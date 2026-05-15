@@ -1,6 +1,6 @@
 
-const TOKEN = "PASTE_BOT_TOKEN";
-const CHAT_ID = "PASTE_CHAT_ID";
+const TOKEN = "8873966983:AAHwvE34xIG7AF5JGy8wVXo7bAI-1vpGVHk";
+const CHAT_ID = "-1003921343760";
 
 document.getElementById("telegramForm").addEventListener("submit", async function(e){
 
