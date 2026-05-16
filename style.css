@@ -206,3 +206,22 @@ font-size:30px;
   color:#6f7d86;
   font-size:14px;
 }
+.success-message{
+opacity: 0;
+transform: translateY(10px);
+transition: all 0.3s ease;
+margin-top: 20px;
+padding: 15px;
+border-radius: 12px;
+background: rgba(0,255,170,0.1);
+border: 1px solid #00ffaa;
+color: #00ffaa;
+font-size: 16px;
+text-align: center;
+pointer-events: none;
+}
+
+.success-message.show{
+opacity: 1;
+transform: translateY(0);
+}
