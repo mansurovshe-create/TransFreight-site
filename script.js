@@ -31,6 +31,7 @@ const successMessage =
 document.getElementById("successMessage");
 
 successMessage.classList.add("show");
+ym(109260432, 'reachGoal', 'lead');
 
 setTimeout(() => {
 successMessage.classList.remove("show");
