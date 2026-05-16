@@ -22,7 +22,14 @@ cargo
 })
 });
 
-alert("Заявка отправлена");
+const successMessage =
+document.getElementById("successMessage");
+
+successMessage.classList.add("show");
+
+setTimeout(() => {
+successMessage.classList.remove("show");
+}, 4000);
 
 document.getElementById("telegramForm").reset();
 
