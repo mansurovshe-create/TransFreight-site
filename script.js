@@ -7,6 +7,9 @@ const phone = document.getElementById("phone").value;
 const route = document.getElementById("route").value;
 const cargo = document.getElementById("cargo").value;
 const website = document.getElementById("website").value;
+const button = document.querySelector("#telegramForm button[type='submit']");
+button.disabled = true;
+button.textContent = "Отправка...";
   
 try{
 
@@ -39,6 +42,12 @@ document.getElementById("telegramForm").reset();
 
 console.error(error);
 alert("Ошибка отправки");
+
+} finally {
+
+const button = document.querySelector("#telegramForm button[type='submit']");
+button.disabled = false;
+button.textContent = "Отправить заявку";
 
 }
 
