@@ -6,7 +6,8 @@ const name = document.getElementById("name").value;
 const phone = document.getElementById("phone").value;
 const route = document.getElementById("route").value;
 const cargo = document.getElementById("cargo").value;
-
+const website = document.getElementById("website").value;
+  
 try{
 
 await fetch("https://noisy-breeze-f037.mansurov-she.workers.dev", {
@@ -18,7 +19,8 @@ body: JSON.stringify({
 name,
 phone,
 route,
-cargo
+cargo,
+website
 })
 });
 
