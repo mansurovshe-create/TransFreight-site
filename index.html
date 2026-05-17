@@ -228,6 +228,57 @@ data-sitekey="0x4AAAAAADRK5G3awvAaMpHT">
 
 </section>
 
+</section>
+
+<section class="driver-section">
+
+<button class="driver-toggle-btn" onclick="toggleDriverForm()">
+🚚 Вы водитель?
+</button>
+
+<div class="driver-form-wrapper" id="driverFormWrapper">
+
+<h2>Заявка для водителей</h2>
+
+<form id="driverForm">
+
+<input type="text"
+id="driverName"
+placeholder="Ваше имя"
+required
+maxlength="40">
+
+<input type="text"
+id="driverCity"
+placeholder="Ваш город"
+required
+maxlength="60">
+
+<input type="tel"
+id="driverPhone"
+placeholder="Телефон"
+required
+maxlength="18">
+
+<button type="submit">
+Отправить заявку
+</button>
+
+<div id="driverSuccess" class="success-message">
+✅ Заявка отправлена
+</div>
+
+<div id="driverError" class="error-message">
+Заполните поля корректно
+</div>
+
+</form>
+
+</div>
+
+</section>
+
+<footer class="footer">
 <footer class="footer">
 <div class="footer-inner">
 
