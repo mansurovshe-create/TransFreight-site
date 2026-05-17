@@ -69,6 +69,16 @@ if(cleanPhone.length < 11){
 showError("Введите корректный телефон");
 return;
 }
+  
+if(route.length < 3){
+showError("Введите маршрут");
+return;
+}
+
+if(cargo.length < 3){
+showError("Введите описание груза");
+return;
+}
 
 const tokenField = document.querySelector('[name="cf-turnstile-response"]');
 
