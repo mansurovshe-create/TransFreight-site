@@ -752,3 +752,102 @@ width:100%;
     grid-template-columns:1fr;
   }
 }
+.advantages .cards{
+  display:grid !important;
+  grid-template-columns:repeat(5, 1fr) !important;
+  gap:28px !important;
+  align-items:stretch !important;
+}
+
+.advantages .card{
+  grid-column:auto !important;
+  position:relative;
+  height:190px;
+  padding:28px 24px;
+  border-radius:22px;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.035));
+  border:1px solid rgba(255,255,255,0.16);
+  backdrop-filter:blur(12px);
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  transition:all 0.45s ease;
+}
+
+.advantages .card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top left, rgba(33,212,212,0.35), transparent 45%);
+  opacity:0;
+  transition:opacity 0.45s ease;
+}
+
+.advantages .card h3{
+  position:relative;
+  z-index:2;
+  margin:0;
+  color:#fff;
+  font-size:22px;
+  line-height:1.25;
+  font-weight:800;
+  text-transform:uppercase;
+}
+
+.advantages .card p{
+  position:relative;
+  z-index:2;
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  transform:translateY(18px);
+  margin:0;
+  color:#c5d3dc;
+  font-size:15px;
+  line-height:1.5;
+  transition:all 0.55s ease;
+}
+
+.advantages .card:hover{
+  transform:translateY(-8px);
+  border-color:#21d4d4;
+  box-shadow:
+    0 0 0 1px rgba(33,212,212,0.25),
+    0 18px 45px rgba(0,0,0,0.35),
+    0 0 35px rgba(33,212,212,0.18);
+}
+
+.advantages .card:hover::before{
+  opacity:1;
+}
+
+.advantages .card:hover h3{
+  color:#21d4d4;
+  transform:translateY(-10px);
+}
+
+.advantages .card:hover p{
+  max-height:90px;
+  opacity:1;
+  transform:translateY(0);
+  margin-top:12px;
+}
+
+.advantages .card:nth-child(4),
+.advantages .card:nth-child(5){
+  grid-column:auto !important;
+}
+
+@media(max-width:1100px){
+  .advantages .cards{
+    grid-template-columns:repeat(2, 1fr) !important;
+  }
+}
+
+@media(max-width:650px){
+  .advantages .cards{
+    grid-template-columns:1fr !important;
+  }
+}
