@@ -506,3 +506,22 @@ transform:scale(1.1);
 html{
 scroll-behavior:smooth;
 }
+.error-message{
+opacity:0;
+transform:translateY(10px);
+transition:all 0.3s ease;
+margin-top:15px;
+padding:15px;
+border-radius:12px;
+background:rgba(255,80,80,0.1);
+border:1px solid #ff5555;
+color:#ff7777;
+font-size:16px;
+text-align:center;
+pointer-events:none;
+}
+
+.error-message.show{
+opacity:1;
+transform:translateY(0);
+}
