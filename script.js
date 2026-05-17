@@ -65,8 +65,6 @@ showError("Введите корректный телефон");
 return;
 }
 
-const name = document.getElementById("name").value;
-const phone = document.getElementById("phone").value;
 const route = document.getElementById("route").value;
 const cargo = document.getElementById("cargo").value;
 const website = document.getElementById("website").value;
