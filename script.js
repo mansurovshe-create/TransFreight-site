@@ -12,11 +12,7 @@ const phoneInput = document.getElementById("phone");
 
 function formatPhone(digits){
 
-let result = "";
-
-if(digits.length > 0){
-result = "+7";
-}
+let result = "+7";
 
 if(digits.length > 1){
 result += " (" + digits.substring(1, 4);
@@ -37,9 +33,56 @@ result += "-" + digits.substring(9, 11);
 return result;
 }
 
+function getDigitPosition(value, cursor){
+
+let count = 0;
+
+for(let i = 0; i < cursor; i++){
+if(/\d/.test(value[i])){
+count++;
+}
+}
+
+return count;
+}
+
+function getCursorByDigitPosition(value, digitPosition){
+
+let count = 0;
+
+for(let i = 0; i < value.length; i++){
+
+if(/\d/.test(value[i])){
+count++;
+}
+
+if(count >= digitPosition){
+return i + 1;
+}
+
+}
+
+return value.length;
+}
+
+phoneInput.addEventListener("focus", function(){
+
+if(phoneInput.value === ""){
+phoneInput.value = "+7";
+phoneInput.setSelectionRange(3, 3);
+}
+
+});
+
 phoneInput.addEventListener("input", function(){
 
-let digits = phoneInput.value.replace(/\D/g, "");
+const oldValue = phoneInput.value;
+const oldCursor = phoneInput.selectionStart;
+
+let digitPosition =
+getDigitPosition(oldValue, oldCursor);
+
+let digits = oldValue.replace(/\D/g, "");
 
 if(digits.startsWith("8")){
 digits = "7" + digits.slice(1);
@@ -51,7 +94,42 @@ digits = "7" + digits;
 
 digits = digits.substring(0, 11);
 
-phoneInput.value = formatPhone(digits);
+const formatted = formatPhone(digits);
+
+phoneInput.value = formatted;
+
+let newCursor =
+getCursorByDigitPosition(formatted, digitPosition);
+
+if(newCursor < 3){
+newCursor = 3;
+}
+
+phoneInput.setSelectionRange(newCursor, newCursor);
+
+});
+
+phoneInput.addEventListener("keydown", function(e){
+
+const start = phoneInput.selectionStart;
+const end = phoneInput.selectionEnd;
+
+if(
+(e.key === "Backspace" || e.key === "Delete")
+&& start <= 3
+&& end <= 3
+){
+e.preventDefault();
+phoneInput.setSelectionRange(3, 3);
+}
+
+});
+
+phoneInput.addEventListener("click", function(){
+
+if(phoneInput.selectionStart < 3){
+phoneInput.setSelectionRange(3, 3);
+}
 
 });
 
