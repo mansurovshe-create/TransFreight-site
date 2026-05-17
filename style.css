@@ -623,10 +623,23 @@ color:#c5d3dc;
 font-size:16px;
 cursor:pointer;
 transition:0.3s;
+outline:none;
 }
 
 .switch-btn.active{
 background:#11c5c6;
 color:#081018;
 font-weight:bold;
+}
+.form-switcher{
+position:relative;
+z-index:1000;
+display:flex;
+}
+
+.switch-btn{
+position:relative;
+z-index:1001;
+pointer-events:auto;
+width:100%;
 }
