@@ -425,3 +425,15 @@ button.textContent = "Отправить заявку";
 });
 
 }
+const driverToggleBtn = document.getElementById("driverToggleBtn");
+const driverFormWrapper = document.getElementById("driverFormWrapper");
+
+if(driverToggleBtn && driverFormWrapper){
+
+driverToggleBtn.addEventListener("click", function(){
+
+driverFormWrapper.classList.toggle("active");
+
+});
+
+}
