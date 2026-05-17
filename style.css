@@ -1138,3 +1138,81 @@ button:disabled{
       scale(1);
   }
 }
+/* ===== SMOOTH CARD HOVER FIX + LIGHT SWEEP ===== */
+
+.why-card,
+.step{
+  transition:
+    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 1.15s ease,
+    border-color 1.15s ease,
+    background 1.15s ease !important;
+}
+
+/* убираем жесткий 3D-поворот */
+.why-card:hover,
+.step:hover{
+  transform: translateY(-6px) scale(1.006) !important;
+}
+
+/* мягкий внутренний glow */
+.why-card::before,
+.step::before{
+  transition:
+    opacity 1.2s ease,
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.why-card:hover::before,
+.step:hover::before{
+  opacity: 0.62 !important;
+}
+
+/* световой блик */
+.why-card::after,
+.step::after{
+  content:"";
+  position:absolute;
+  top:-40%;
+  left:-80%;
+  width:55%;
+  height:180%;
+  background:linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255,255,255,0.06) 35%,
+    rgba(33,212,212,0.18) 50%,
+    rgba(255,255,255,0.06) 65%,
+    transparent 100%
+  );
+  transform:rotate(18deg);
+  opacity:0;
+  pointer-events:none;
+  z-index:1;
+  transition:
+    left 1.35s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.65s ease;
+}
+
+.why-card:hover::after,
+.step:hover::after{
+  left:130%;
+  opacity:1;
+}
+
+/* иконки/цифры — мягко, без рывка */
+.why-card:hover .card-icon,
+.step:hover span{
+  transform: translateY(-4px) scale(1.035) !important;
+}
+
+/* текст — едва заметный подъем */
+.why-card:hover h3,
+.step:hover h3{
+  transform: translateY(-2px) !important;
+}
+
+.why-card:hover p,
+.step:hover p{
+  transform: translateY(-1px) !important;
+}
