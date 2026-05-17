@@ -1613,3 +1613,6 @@ textarea:focus{
     rotate(-3deg)
     scale(1.045) !important;
 }
+.reviews{
+  display:none !important;
+}
