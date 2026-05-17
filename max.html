@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Заявка TransFreight</title>
+
+<style>
+*{
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+margin:0;
+background:#07111f;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:480px;
+margin:auto;
+padding-top:20px;
+}
+
+.logo{
+text-align:center;
+font-size:28px;
+font-weight:bold;
+color:#21d4d4;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:#bfc9d4;
+margin-bottom:30px;
+line-height:1.5;
+}
+
+form{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+input,textarea{
+width:100%;
+padding:16px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,0.12);
+background:#101820;
+color:white;
+font-size:16px;
+}
+
+textarea{
+min-height:100px;
+resize:vertical;
+}
+
+button{
+width:100%;
+padding:17px;
+border:none;
+border-radius:14px;
+background:#21d4d4;
+color:#07111f;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.success{
+display:none;
+margin-top:18px;
+padding:15px;
+border-radius:14px;
+background:rgba(0,255,170,0.1);
+border:1px solid #00ffaa;
+color:#00ffaa;
+text-align:center;
+}
+
+.error{
+display:none;
+margin-top:18px;
+padding:15px;
+border-radius:14px;
+background:rgba(255,0,0,0.1);
+border:1px solid #ff5555;
+color:#ff7777;
+text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">TransFreight</div>
+<div class="subtitle">
+Оставьте заявку на перевозку — мы свяжемся с вами и рассчитаем стоимость.
+</div>
+
+<form id="maxForm">
+<input type="text" id="name" placeholder="Ваше имя" required>
+<input type="tel" id="phone" placeholder="Телефон" required>
+<input type="text" id="route" placeholder="Маршрут">
+<textarea id="cargo" placeholder="Описание груза"></textarea>
+<input type="text" id="website" style="display:none" autocomplete="off">
+
+<button type="submit">Отправить заявку</button>
+
+<div id="success" class="success">
+✅ Заявка отправлена
+</div>
+
+<div id="error" class="error">
+Ошибка отправки. Попробуйте позже.
+</div>
+</form>
+
+</div>
+
+<script>
+document.getElementById("maxForm").addEventListener("submit", async function(e){
+e.preventDefault();
+
+const button = document.querySelector("button");
+const success = document.getElementById("success");
+const error = document.getElementById("error");
+
+success.style.display = "none";
+error.style.display = "none";
+
+button.disabled = true;
+button.textContent = "Отправка...";
+
+const data = {
+name: document.getElementById("name").value,
+phone: document.getElementById("phone").value,
+route: document.getElementById("route").value,
+cargo: document.getElementById("cargo").value,
+website: document.getElementById("website").value
+};
+
+try{
+const response = await fetch("https://noisy-breeze-f037.mansurov-she.workers.dev", {
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify(data)
+});
+
+if(!response.ok){
+throw new Error("Send error");
+}
+
+success.style.display = "block";
+document.getElementById("maxForm").reset();
+
+}catch(err){
+error.style.display = "block";
+}
+
+button.disabled = false;
+button.textContent = "Отправить заявку";
+});
+</script>
+
+</body>
+</html>
