@@ -842,3 +842,50 @@ button:disabled{
     bottom:94px;
   }
 }
+/* ===== Аккуратная плавная анимация карточек ===== */
+
+.why-card,
+.step{
+  will-change: transform, box-shadow, border-color;
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.9s ease,
+    border-color 0.9s ease,
+    background 0.9s ease !important;
+}
+
+.why-card::before,
+.step::before{
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.card-icon,
+.step span{
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.9s ease,
+    background 0.9s ease,
+    color 0.9s ease !important;
+}
+
+.why-card h3,
+.why-card p,
+.step h3,
+.step p{
+  transition:
+    color 0.7s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.7s ease !important;
+}
+
+.why-card:hover,
+.step:hover{
+  transform: translateY(-7px) !important;
+}
+
+.why-card:hover .card-icon,
+.step:hover span{
+  transform: translateY(-4px) scale(1.04) !important;
+}
