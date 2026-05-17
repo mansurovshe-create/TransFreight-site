@@ -77,12 +77,16 @@ method: "POST",
 headers: {
 "Content-Type": "application/json"
 },
+const token =
+document.querySelector('[name="cf-turnstile-response"]').value;
+
 body: JSON.stringify({
 name,
 phone,
 route,
 cargo,
-website
+website,
+token
 })
 });
 
