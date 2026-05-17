@@ -1,3 +1,12 @@
+function showError(text){
+const errorMessage = document.getElementById("errorMessage");
+errorMessage.textContent = text;
+errorMessage.classList.add("show");
+
+setTimeout(() => {
+errorMessage.classList.remove("show");
+}, 4000);
+}
 const phoneInput = document.getElementById("phone");
 
 phoneInput.addEventListener("input", function(e) {
@@ -47,12 +56,12 @@ const cleanPhone =
 phone.replace(/\D/g,'');
 
 if(name.length < 2){
-alert("Введите имя");
+showError("Введите имя");
 return;
 }
 
 if(cleanPhone.length < 11){
-alert("Введите корректный телефон");
+showError("Введите корректный телефон");
 return;
 }
 
@@ -96,7 +105,7 @@ document.getElementById("telegramForm").reset();
 }catch(error){
 
 console.error(error);
-alert("Ошибка отправки");
+showError("Ошибка отправки. Попробуйте позже");
 
 } finally {
 
