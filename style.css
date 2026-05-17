@@ -1262,3 +1262,60 @@ button:disabled{
     0 20px 45px rgba(0,0,0,0.32),
     0 0 26px rgba(33,212,212,0.16) !important;
 }
+/* ===== ULTRA SMOOTH HOVER ===== */
+
+.why-card,
+.step{
+  transform: translateY(0);
+
+  transition:
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 1.1s ease,
+    background 1.1s ease !important;
+
+  will-change: transform;
+}
+
+/* плавное мягкое наведение */
+.why-card:hover,
+.step:hover{
+  transform: translateY(-4px) !important;
+
+  box-shadow:
+    0 24px 55px rgba(0,0,0,0.30),
+    0 0 30px rgba(33,212,212,0.12) !important;
+}
+
+/* иконки */
+.card-icon,
+.step span{
+  transition:
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 1.1s ease,
+    background 1.1s ease !important;
+}
+
+/* иконки двигаются еле заметно */
+.why-card:hover .card-icon,
+.step:hover span{
+  transform: translateY(-2px) scale(1.015) !important;
+}
+
+/* убираем резкие движения текста */
+.why-card h3,
+.why-card p,
+.step h3,
+.step p{
+  transition:
+    color 0.7s ease,
+    opacity 0.7s ease !important;
+
+  transform:none !important;
+}
+
+/* отключаем старые конфликтующие анимации */
+.why-card::after,
+.step::after{
+  animation:none !important;
+}
