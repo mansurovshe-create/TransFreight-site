@@ -889,3 +889,73 @@ button:disabled{
 .step:hover span{
   transform: translateY(-4px) scale(1.04) !important;
 }
+/* ===== Живые анимации для блоков ===== */
+
+/* плавное появление */
+.why-card,
+.step{
+  opacity:0;
+  transform:translateY(30px);
+  animation:softFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* задержки */
+.why-card:nth-child(1),
+.step:nth-child(1){ animation-delay:0.08s; }
+
+.why-card:nth-child(2),
+.step:nth-child(2){ animation-delay:0.18s; }
+
+.why-card:nth-child(3),
+.step:nth-child(3){ animation-delay:0.28s; }
+
+.why-card:nth-child(4),
+.step:nth-child(4){ animation-delay:0.38s; }
+
+.why-card:nth-child(5){ animation-delay:0.48s; }
+
+/* сама анимация */
+@keyframes softFadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* лёгкое живое движение */
+.why-card::after,
+.step::after{
+  animation:cardGlowFloat 7s ease-in-out infinite;
+}
+
+@keyframes cardGlowFloat{
+  0%,100%{
+    transform:translateY(0px);
+    opacity:0.45;
+  }
+
+  50%{
+    transform:translateY(-8px);
+    opacity:0.7;
+  }
+}
+
+/* плавное свечение */
+.card-icon,
+.step span{
+  animation:softPulse 4s ease-in-out infinite;
+}
+
+@keyframes softPulse{
+  0%,100%{
+    box-shadow:
+      0 0 25px rgba(33,212,212,0.18),
+      0 0 0 rgba(33,212,212,0);
+  }
+
+  50%{
+    box-shadow:
+      0 0 38px rgba(33,212,212,0.35),
+      0 0 18px rgba(33,212,212,0.15);
+  }
+}
