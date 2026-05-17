@@ -481,3 +481,25 @@ box-shadow:0 0 0 20px rgba(33,212,212,0);
 box-shadow:0 0 0 0 rgba(33,212,212,0);
 }
 }
+.floating-max{
+position:fixed;
+right:25px;
+bottom:105px;
+width:65px;
+height:65px;
+border-radius:50%;
+background:#ffffff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+text-decoration:none;
+color:#111;
+box-shadow:0 10px 30px rgba(255,255,255,0.2);
+z-index:999;
+transition:0.3s ease;
+}
+
+.floating-max:hover{
+transform:scale(1.1);
+}
