@@ -341,19 +341,4 @@ document.addEventListener("DOMContentLoaded", () => {
   revealItems.forEach((item) => observer.observe(item));
 });
 
-// ===== Mouse glow inside cards =====
-document.addEventListener("DOMContentLoaded", () => {
-  const glowCards = document.querySelectorAll(".why-card, .step");
 
-  glowCards.forEach((card) => {
-    const glow = document.createElement("span");
-    glow.classList.add("mouse-glow");
-    card.appendChild(glow);
-
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      glow.style.left = `${e.clientX - rect.left}px`;
-      glow.style.top = `${e.clientY - rect.top}px`;
-    });
-  });
-});
