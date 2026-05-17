@@ -1319,3 +1319,77 @@ button:disabled{
 .step::after{
   animation:none !important;
 }
+/* ===== FINAL SMOOTH CARD HOVER FIX ===== */
+
+.why-card,
+.step{
+  transform: none !important;
+
+  animation: none !important;
+
+  transition:
+    translate 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 1.4s ease,
+    background 1.4s ease !important;
+
+  will-change: auto !important;
+}
+
+/* только очень мягкий подъем */
+.why-card:hover,
+.step:hover{
+  transform: none !important;
+
+  translate: 0 -3px;
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.24),
+    0 0 18px rgba(33,212,212,0.10) !important;
+}
+
+/* полностью убираем дергание внутренних элементов */
+.card-icon,
+.step span,
+.why-card h3,
+.why-card p,
+.step h3,
+.step p{
+  transform: none !important;
+  animation: none !important;
+
+  transition:
+    color 0.9s ease,
+    opacity 0.9s ease,
+    background 0.9s ease,
+    box-shadow 1.2s ease !important;
+}
+
+/* glow мягкий */
+.card-icon,
+.step span{
+  box-shadow:
+    0 0 22px rgba(33,212,212,0.16),
+    inset 0 0 18px rgba(33,212,212,0.08) !important;
+}
+
+.why-card:hover .card-icon,
+.step:hover span{
+  transform: none !important;
+
+  box-shadow:
+    0 0 30px rgba(33,212,212,0.22),
+    inset 0 0 22px rgba(33,212,212,0.12) !important;
+}
+
+/* убираем все конфликтующие эффекты */
+.why-card::before,
+.why-card::after,
+.step::before,
+.step::after{
+  animation: none !important;
+  transform: none !important;
+
+  transition:
+    opacity 1.4s ease !important;
+}
