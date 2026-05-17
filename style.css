@@ -1688,3 +1688,67 @@ video{
     right:16px;
   }
 }
+body {
+  background:
+    radial-gradient(circle at 15% 25%, rgba(255, 140, 0, 0.12), transparent 28%),
+    radial-gradient(circle at 85% 45%, rgba(0, 80, 160, 0.12), transparent 30%),
+    linear-gradient(180deg, #f7f9fc 0%, #eef3f8 45%, #f8fafc 100%);
+}
+
+/* Общий красивый фон для основных блоков */
+.advantages,
+.steps,
+.contact {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Тонкая логистическая сетка */
+.advantages::before,
+.steps::before,
+.contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(20, 40, 70, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 40, 70, 0.045) 1px, transparent 1px);
+  background-size: 42px 42px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Мягкое световое пятно */
+.advantages::after,
+.steps::after,
+.contact::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 140, 0, 0.18), transparent 65%);
+  right: -140px;
+  top: 80px;
+  pointer-events: none;
+}
+
+/* Чтобы контент был поверх фона */
+.advantages > *,
+.steps > *,
+.contact > * {
+  position: relative;
+  z-index: 2;
+}
+.why-card,
+.step,
+#telegramForm,
+#driverForm {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 18px 45px rgba(15, 35, 60, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
