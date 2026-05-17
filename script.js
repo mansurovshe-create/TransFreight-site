@@ -437,3 +437,85 @@ driverFormWrapper.classList.toggle("active");
 });
 
 }
+const driverForm = document.getElementById("driverForm");
+
+if(driverForm){
+
+driverForm.addEventListener("submit", async function(e){
+e.preventDefault();
+
+const name = document.getElementById("driverName").value.trim();
+const city = document.getElementById("driverCity").value.trim();
+const phone = document.getElementById("driverPhone").value.trim();
+const car = document.getElementById("driverCar").value.trim();
+
+const driverSuccess = document.getElementById("driverSuccess");
+const driverError = document.getElementById("driverError");
+
+driverSuccess.classList.remove("show");
+driverError.classList.remove("show");
+
+const cleanPhone = phone.replace(/\D/g,'');
+
+if(name.length < 2 || city.length < 2 || cleanPhone.length < 11 || car.length < 2){
+driverError.textContent = "Заполните все поля корректно";
+driverError.classList.add("show");
+return;
+}
+
+const tokenField = driverForm.querySelector('[name="cf-turnstile-response"]');
+
+if(!tokenField || !tokenField.value){
+driverError.textContent = "Подтвердите проверку Cloudflare";
+driverError.classList.add("show");
+return;
+}
+
+const button = driverForm.querySelector("button[type='submit']");
+button.disabled = true;
+button.textContent = "Отправка...";
+
+try{
+
+const response = await fetch("https://noisy-breeze-f037.mansurov-she.workers.dev", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+name: name,
+phone: phone,
+route: "Заявка от водителя",
+cargo: "Город: " + city + "\nМашина: " + car,
+website: "",
+token: tokenField.value
+})
+});
+
+if(!response.ok){
+throw new Error("Ошибка отправки");
+}
+
+driverSuccess.classList.add("show");
+driverForm.reset();
+
+if(typeof turnstile !== "undefined"){
+turnstile.reset();
+}
+
+}catch(error){
+
+console.error(error);
+driverError.textContent = "Ошибка отправки. Попробуйте позже";
+driverError.classList.add("show");
+
+}finally{
+
+button.disabled = false;
+button.textContent = "Отправить заявку";
+
+}
+
+});
+
+}
