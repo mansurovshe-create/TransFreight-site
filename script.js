@@ -230,12 +230,13 @@ button.textContent = "Отправить заявку";
 }
 
 });
-function toggleDriverForm(){
+const driverToggleBtn = document.getElementById("driverToggleBtn");
+const driverFormWrapper = document.getElementById("driverFormWrapper");
 
-document
-.getElementById("driverFormWrapper")
-.classList.toggle("active");
-
+if(driverToggleBtn && driverFormWrapper){
+driverToggleBtn.addEventListener("click", function(){
+driverFormWrapper.classList.toggle("active");
+});
 }
 
 const driverPhoneInput = document.getElementById("driverPhone");
@@ -243,12 +244,10 @@ const driverPhoneInput = document.getElementById("driverPhone");
 if(driverPhoneInput){
 
 driverPhoneInput.addEventListener("focus", function(){
-
 if(driverPhoneInput.value === ""){
 driverPhoneInput.value = "+7";
 driverPhoneInput.setSelectionRange(3,3);
 }
-
 });
 
 driverPhoneInput.addEventListener("input", function(){
@@ -256,9 +255,7 @@ driverPhoneInput.addEventListener("input", function(){
 const oldValue = driverPhoneInput.value;
 const oldCursor = driverPhoneInput.selectionStart;
 
-let digitPosition =
-getDigitPosition(oldValue, oldCursor);
-
+let digitPosition = getDigitPosition(oldValue, oldCursor);
 let digits = oldValue.replace(/\D/g, "");
 
 if(digits.startsWith("8")){
@@ -272,11 +269,9 @@ digits = "7" + digits;
 digits = digits.substring(0,11);
 
 const formatted = formatPhone(digits);
-
 driverPhoneInput.value = formatted;
 
-let newCursor =
-getCursorByDigitPosition(formatted, digitPosition);
+let newCursor = getCursorByDigitPosition(formatted, digitPosition);
 
 if(newCursor < 3){
 newCursor = 3;
@@ -286,157 +281,8 @@ driverPhoneInput.setSelectionRange(newCursor,newCursor);
 
 });
 
-driverPhoneInput.addEventListener("keydown", function(e){
-
-const start = driverPhoneInput.selectionStart;
-const end = driverPhoneInput.selectionEnd;
-
-if(
-(e.key === "Backspace" || e.key === "Delete")
-&& start <= 3
-&& end <= 3
-){
-e.preventDefault();
-driverPhoneInput.setSelectionRange(3,3);
 }
 
-});
-
-driverPhoneInput.addEventListener("click", function(){
-
-if(driverPhoneInput.selectionStart < 3){
-driverPhoneInput.setSelectionRange(3,3);
-}
-
-});
-
-}
-
-const driverForm = document.getElementById("driverForm");
-
-if(driverForm){
-
-driverForm.addEventListener("submit", async function(e){
-
-e.preventDefault();
-
-const name =
-document.getElementById("driverName").value.trim();
-
-const city =
-document.getElementById("driverCity").value.trim();
-
-const phone =
-document.getElementById("driverPhone").value.trim();
-
-const website =
-document.getElementById("driverWebsite").value;
-
-const cleanPhone = phone.replace(/\D/g,'');
-
-if(name.length < 2){
-showError("Введите имя");
-return;
-}
-
-if(city.length < 2){
-showError("Введите город");
-return;
-}
-
-if(cleanPhone.length < 11){
-showError("Введите корректный телефон");
-return;
-}
-
-const tokenField =
-driverForm.querySelector('[name="cf-turnstile-response"]');
-
-if(!tokenField || !tokenField.value){
-showError("Подтвердите проверку Cloudflare");
-return;
-}
-
-const token = tokenField.value;
-
-const button =
-driverForm.querySelector("button[type='submit']");
-
-button.disabled = true;
-button.textContent = "Отправка...";
-
-try{
-
-const response = await fetch(
-"https://noisy-breeze-f037.mansurov-she.workers.dev",
-{
-method: "POST",
-
-headers: {
-"Content-Type": "application/json"
-},
-
-body: JSON.stringify({
-
-name,
-phone,
-website,
-token,
-
-route: "Водитель",
-cargo: `Город: ${city}`
-
-})
-
-});
-
-if(!response.ok){
-throw new Error("Ошибка отправки");
-}
-
-const success =
-document.getElementById("driverSuccess");
-
-success.classList.add("show");
-
-setTimeout(() => {
-success.classList.remove("show");
-},4000);
-
-driverForm.reset();
-
-if(typeof turnstile !== "undefined"){
-turnstile.reset();
-}
-
-}catch(error){
-
-console.error(error);
-
-showError("Ошибка отправки. Попробуйте позже");
-
-} finally {
-
-button.disabled = false;
-button.textContent = "Отправить заявку";
-
-}
-
-});
-
-}
-const driverToggleBtn = document.getElementById("driverToggleBtn");
-const driverFormWrapper = document.getElementById("driverFormWrapper");
-
-if(driverToggleBtn && driverFormWrapper){
-
-driverToggleBtn.addEventListener("click", function(){
-
-driverFormWrapper.classList.toggle("active");
-
-});
-
-}
 const driverForm = document.getElementById("driverForm");
 
 if(driverForm){
