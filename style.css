@@ -845,6 +845,25 @@ width:100%;
     grid-template-columns:repeat(2, 1fr) !important;
   }
 }
+.advantages .card{
+  min-height:240px;
+  height:auto;
+}
+
+.advantages .card h3{
+  font-size:20px;
+  line-height:1.2;
+  word-break:normal;
+}
+
+.advantages .card p{
+  font-size:14px;
+  line-height:1.45;
+}
+
+.advantages .card:hover p{
+  max-height:160px;
+}
 
 @media(max-width:650px){
   .advantages .cards{
