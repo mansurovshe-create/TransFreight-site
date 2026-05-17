@@ -959,3 +959,182 @@ button:disabled{
       0 0 18px rgba(33,212,212,0.15);
   }
 }
+/* ===== ULTRA SMOOTH PREMIUM ANIMATIONS ===== */
+
+/* супер плавные переходы */
+.why-card,
+.step{
+  transform-style:preserve-3d;
+
+  transition:
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 1.2s ease,
+    border-color 1.2s ease,
+    background 1.2s ease !important;
+}
+
+/* glow внутри */
+.why-card::before,
+.step::before{
+  transition:
+    opacity 1.4s ease,
+    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* glow шар */
+.why-card::after,
+.step::after{
+  transition:
+    opacity 1.6s ease,
+    transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+  animation:
+    floatingGlow 10s ease-in-out infinite;
+}
+
+/* hover */
+.why-card:hover,
+.step:hover{
+  transform:
+    perspective(1200px)
+    rotateX(1deg)
+    rotateY(-1deg)
+    translateY(-10px)
+    scale(1.01) !important;
+}
+
+/* иконки */
+.card-icon,
+.step span{
+  transition:
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 1.2s ease,
+    background 1.2s ease,
+    color 1.2s ease !important;
+
+  animation:
+    iconBreath 6s ease-in-out infinite;
+}
+
+.why-card:hover .card-icon,
+.step:hover span{
+  transform:
+    translateY(-6px)
+    scale(1.06)
+    rotate(-2deg) !important;
+}
+
+/* текст */
+.why-card h3,
+.step h3{
+  transition:
+    color 0.9s ease,
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.why-card p,
+.step p{
+  transition:
+    opacity 1s ease,
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.8s ease !important;
+}
+
+/* плавное движение glow */
+@keyframes floatingGlow{
+
+  0%,100%{
+    transform:
+      translateY(0px)
+      translateX(0px)
+      scale(1);
+
+    opacity:0.45;
+  }
+
+  25%{
+    transform:
+      translateY(-10px)
+      translateX(6px)
+      scale(1.04);
+
+    opacity:0.62;
+  }
+
+  50%{
+    transform:
+      translateY(-18px)
+      translateX(-4px)
+      scale(1.08);
+
+    opacity:0.75;
+  }
+
+  75%{
+    transform:
+      translateY(-8px)
+      translateX(8px)
+      scale(1.03);
+
+    opacity:0.58;
+  }
+}
+
+/* дыхание иконок */
+@keyframes iconBreath{
+
+  0%,100%{
+    box-shadow:
+      0 0 28px rgba(33,212,212,0.18),
+      0 0 0 rgba(33,212,212,0);
+
+    transform:translateY(0px);
+  }
+
+  50%{
+    box-shadow:
+      0 0 44px rgba(33,212,212,0.38),
+      0 0 22px rgba(33,212,212,0.12);
+
+    transform:translateY(-4px);
+  }
+}
+
+/* плавное появление при загрузке */
+.why-card,
+.step{
+  animation:
+    smoothReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.why-card:nth-child(1),
+.step:nth-child(1){ animation-delay:0.08s; }
+
+.why-card:nth-child(2),
+.step:nth-child(2){ animation-delay:0.18s; }
+
+.why-card:nth-child(3),
+.step:nth-child(3){ animation-delay:0.28s; }
+
+.why-card:nth-child(4),
+.step:nth-child(4){ animation-delay:0.38s; }
+
+.why-card:nth-child(5){
+  animation-delay:0.48s;
+}
+
+@keyframes smoothReveal{
+  from{
+    opacity:0;
+    transform:
+      translateY(45px)
+      scale(0.98);
+  }
+
+  to{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
