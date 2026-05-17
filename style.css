@@ -1158,3 +1158,66 @@ width:100%;
     min-height:260px !important;
   }
 }
+/* ===== Premium hover для блока "Почему выбирают нас" ===== */
+
+.advantages .why-card{
+  isolation:isolate;
+}
+
+.advantages .why-card::after{
+  content:"";
+  position:absolute;
+  left:32px;
+  top:150px;
+  width:70px;
+  height:3px;
+  border-radius:10px;
+  background:linear-gradient(90deg, #21d4d4, transparent);
+  opacity:0.9;
+  z-index:2;
+  transition:all 0.55s cubic-bezier(.2,.8,.2,1);
+}
+
+.advantages .why-card:hover{
+  transform:perspective(900px) rotateX(2deg) rotateY(-2deg) translateY(-12px) !important;
+}
+
+.advantages .why-card:hover::after{
+  width:115px;
+  opacity:1;
+  box-shadow:0 0 18px rgba(33,212,212,0.65);
+}
+
+.advantages .why-card .card-icon{
+  animation:iconFloat 4s ease-in-out infinite;
+}
+
+.advantages .why-card:hover .card-icon{
+  animation:none;
+}
+
+.advantages .why-card:hover .card-icon img{
+  transform:translateX(2px) scale(1.08);
+}
+
+.advantages .why-card::before{
+  animation:softGlow 4s ease-in-out infinite;
+}
+
+@keyframes iconFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-5px);
+  }
+}
+
+@keyframes softGlow{
+  0%,100%{
+    opacity:0.35;
+  }
+  50%{
+    opacity:0.65;
+  }
+}
