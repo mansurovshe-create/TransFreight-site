@@ -28,6 +28,7 @@ object-fit:cover;
 position:absolute;
 inset:0;
 background:rgba(0,0,0,0.6);
+pointer-events:none;
 }
 
 .hero-content{
@@ -576,4 +577,19 @@ margin:30px auto 0;
 
 .driver-form-wrapper.active{
 display:block;
+}
+.driver-section{
+position:relative;
+z-index:1000;
+}
+
+.driver-toggle-btn{
+position:relative;
+z-index:1001;
+pointer-events:auto;
+}
+
+.driver-form-wrapper{
+position:relative;
+z-index:1001;
 }
