@@ -1564,3 +1564,52 @@ textarea:focus{
     0 0 35px rgba(33,212,212,0.45),
     0 0 70px rgba(33,212,212,0.18);
 }
+/* ===== SMOOTHER STEP CARDS ANIMATION ===== */
+
+.step{
+  will-change:transform, box-shadow, border-color, background;
+  transition:
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.85s ease,
+    background 0.85s ease,
+    box-shadow 0.85s ease !important;
+}
+
+.step::before,
+.step::after{
+  transition:
+    opacity 0.85s ease,
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.step span{
+  will-change:transform, box-shadow, background;
+  transition:
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.85s ease,
+    color 0.85s ease,
+    box-shadow 0.85s ease !important;
+}
+
+.step h3,
+.step p{
+  transition:
+    color 0.65s ease,
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.65s ease !important;
+}
+
+.step:hover{
+  transform:
+    perspective(1000px)
+    rotateX(1.2deg)
+    rotateY(-1.2deg)
+    translateY(-8px) !important;
+}
+
+.step:hover span{
+  transform:
+    translateY(-5px)
+    rotate(-3deg)
+    scale(1.045) !important;
+}
