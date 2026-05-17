@@ -1284,20 +1284,26 @@ width:100%;
 .why-card .mouse-glow,
 .step .mouse-glow{
   position:absolute;
-  width:220px;
-  height:220px;
+  width:140px;
+  height:140px;
   border-radius:50%;
-  background:radial-gradient(circle, rgba(33,212,212,0.22), transparent 65%);
+  background:radial-gradient(circle, rgba(33,212,212,0.18), transparent 70%);
   transform:translate(-50%, -50%);
   opacity:0;
   pointer-events:none;
-  transition:opacity 0.35s ease;
-  z-index:1;
+  transition:opacity 0.25s ease;
+  z-index:0;
+  mix-blend-mode:screen;
 }
 
 .why-card:hover .mouse-glow,
 .step:hover .mouse-glow{
-  opacity:1;
+  opacity:0.75;
+}
+.why-card > *:not(.mouse-glow),
+.step > *:not(.mouse-glow){
+  position:relative;
+  z-index:2;
 }
 
 /* ===== Блок "Как мы работаем" ===== */
