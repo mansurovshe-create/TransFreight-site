@@ -1616,3 +1616,75 @@ textarea:focus{
 .reviews{
   display:none !important;
 }
+/* ===== MOBILE HORIZONTAL SCROLL FIX ===== */
+
+html,
+body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+
+*{
+  max-width:100%;
+}
+
+img,
+video{
+  max-width:100%;
+}
+
+.hero,
+.advantages,
+.steps,
+.contact,
+.footer{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+/* фикс для glow-элементов, которые могут вылезать за экран */
+.advantages::before,
+.steps::before,
+.contact::before{
+  max-width:280px;
+  max-height:280px;
+}
+
+/* мобильная сетка */
+@media(max-width:768px){
+
+  .hero-content,
+  .advantages,
+  .steps,
+  .contact,
+  .footer{
+    overflow-x:hidden;
+  }
+
+  .cards,
+  .steps-container,
+  .footer-inner{
+    width:100% !important;
+    max-width:100% !important;
+    grid-template-columns:1fr !important;
+  }
+
+  .why-card,
+  .step{
+    width:100% !important;
+    max-width:100% !important;
+    transform:none;
+  }
+
+  .why-card:hover,
+  .step:hover{
+    transform:translateY(-6px) !important;
+  }
+
+  .floating-btn,
+  .floating-max{
+    right:16px;
+  }
+}
