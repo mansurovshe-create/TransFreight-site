@@ -315,3 +315,45 @@ carrierForm.style.display = "block";
 });
 
 }
+// ===== Reveal animation on scroll =====
+document.addEventListener("DOMContentLoaded", () => {
+  const revealItems = document.querySelectorAll(
+    ".why-card, .step, .contact form, .footer-inner > div"
+  );
+
+  revealItems.forEach((item) => {
+    item.classList.add("reveal");
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    },
+    {
+      threshold: 0.15
+    }
+  );
+
+  revealItems.forEach((item) => observer.observe(item));
+});
+
+// ===== Mouse glow inside cards =====
+document.addEventListener("DOMContentLoaded", () => {
+  const glowCards = document.querySelectorAll(".why-card, .step");
+
+  glowCards.forEach((card) => {
+    const glow = document.createElement("span");
+    glow.classList.add("mouse-glow");
+    card.appendChild(glow);
+
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      glow.style.left = `${e.clientX - rect.left}px`;
+      glow.style.top = `${e.clientY - rect.top}px`;
+    });
+  });
+});
