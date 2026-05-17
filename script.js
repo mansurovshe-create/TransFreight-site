@@ -10,44 +10,66 @@ errorMessage.classList.remove("show");
 
 const phoneInput = document.getElementById("phone");
 
+function formatPhone(digits){
+
+let result = "";
+
+if(digits.length > 0){
+result = "+7";
+}
+
+if(digits.length > 1){
+result += " (" + digits.substring(1, 4);
+}
+
+if(digits.length >= 4){
+result += ") " + digits.substring(4, 7);
+}
+
+if(digits.length >= 7){
+result += "-" + digits.substring(7, 9);
+}
+
+if(digits.length >= 9){
+result += "-" + digits.substring(9, 11);
+}
+
+return result;
+}
+
 phoneInput.addEventListener("input", function(){
-let value = phoneInput.value.replace(/\D/g, "");
 
-if(value.startsWith("8")){
-value = "7" + value.slice(1);
+let digits = phoneInput.value.replace(/\D/g, "");
+
+if(digits.startsWith("8")){
+digits = "7" + digits.slice(1);
 }
 
-if(value && !value.startsWith("7")){
-value = "7" + value;
+if(digits.length > 0 && !digits.startsWith("7")){
+digits = "7" + digits;
 }
 
-value = value.substring(0, 11);
+digits = digits.substring(0, 11);
 
-let formatted = "";
+phoneInput.value = formatPhone(digits);
 
-if(value.length > 0){
-formatted = "+7";
-}
-
-if(value.length > 1){
-formatted += " (" + value.substring(1, 4);
-}
-
-if(value.length >= 4){
-formatted += ") " + value.substring(4, 7);
-}
-
-if(value.length >= 7){
-formatted += "-" + value.substring(7, 9);
-}
-
-if(value.length >= 9){
-formatted += "-" + value.substring(9, 11);
-}
-
-phoneInput.value = formatted;
 });
 
+phoneInput.addEventListener("keydown", function(e){
+
+if(e.key === "Backspace"){
+
+e.preventDefault();
+
+let digits = phoneInput.value.replace(/\D/g, "");
+
+digits = digits.slice(0, -1);
+
+phoneInput.value = formatPhone(digits);
+
+}
+
+});
 document.getElementById("telegramForm").addEventListener("submit", async function(e){
 
 e.preventDefault();
