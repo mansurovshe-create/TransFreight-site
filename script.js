@@ -133,21 +133,6 @@ phoneInput.setSelectionRange(3, 3);
 
 });
 
-phoneInput.addEventListener("keydown", function(e){
-
-if(e.key === "Backspace"){
-
-e.preventDefault();
-
-let digits = phoneInput.value.replace(/\D/g, "");
-
-digits = digits.slice(0, -1);
-
-phoneInput.value = formatPhone(digits);
-
-}
-
-});
 document.getElementById("telegramForm").addEventListener("submit", async function(e){
 
 e.preventDefault();
@@ -169,7 +154,7 @@ if(cleanPhone.length < 11){
 showError("Введите корректный телефон");
 return;
 }
-  
+
 if(route.length < 3){
 showError("Введите маршрут");
 return;
