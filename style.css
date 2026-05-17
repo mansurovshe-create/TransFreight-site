@@ -503,3 +503,6 @@ transition:0.3s ease;
 .floating-max:hover{
 transform:scale(1.1);
 }
+html{
+scroll-behavior:smooth;
+}
