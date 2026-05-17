@@ -1,0 +1,138 @@
+
+/* ===== DARK PREMIUM OVERRIDES ===== */
+
+body{
+  background:
+    radial-gradient(circle at 15% 20%, rgba(33,212,212,0.08), transparent 30%),
+    radial-gradient(circle at 85% 70%, rgba(255,140,0,0.08), transparent 30%),
+    linear-gradient(180deg, #07111c 0%, #08131f 45%, #091521 100%) !important;
+
+  color:#fff !important;
+}
+
+/* Секции */
+.advantages,
+.steps,
+.contact{
+  position:relative;
+  overflow:hidden;
+  background:transparent !important;
+  max-width:100% !important;
+}
+
+/* сетка */
+.advantages::before,
+.steps::before,
+.contact::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+  background-size:42px 42px;
+  pointer-events:none;
+}
+
+/* glow */
+.advantages::after,
+.steps::after,
+.contact::after{
+  content:"";
+  position:absolute;
+
+  width:420px;
+  height:420px;
+  border-radius:50%;
+
+  background:
+    radial-gradient(circle,
+      rgba(33,212,212,0.16),
+      transparent 68%);
+
+  filter:blur(20px);
+
+  right:-140px;
+  top:80px;
+
+  pointer-events:none;
+}
+
+/* контент поверх */
+.advantages > *,
+.steps > *,
+.contact > *{
+  position:relative;
+  z-index:2;
+}
+
+/* карточки */
+.why-card,
+.step,
+#telegramForm,
+#driverForm{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.07),
+      rgba(255,255,255,0.03)
+    ) !important;
+
+  border:1px solid rgba(255,255,255,0.10) !important;
+
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.04) !important;
+}
+
+/* заголовки */
+.advantages h2,
+.contact h2,
+.steps h2{
+  color:#ffffff !important;
+}
+
+/* текст */
+.why-card h3,
+.step h3{
+  color:#ffffff !important;
+}
+
+.why-card p,
+.step p{
+  color:#c5d3dc !important;
+}
+
+/* поля формы */
+input,
+textarea{
+  background:#0d1722 !important;
+  border:1px solid rgba(255,255,255,0.08) !important;
+  color:#ffffff !important;
+}
+
+input::placeholder,
+textarea::placeholder{
+  color:#8fa1b2 !important;
+}
+
+/* мобильная версия */
+@media(max-width:768px){
+
+  .advantages::after,
+  .steps::after,
+  .contact::after{
+    width:240px;
+    height:240px;
+  }
+
+  .why-card,
+  .step{
+    min-height:auto !important;
+  }
+}
