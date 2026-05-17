@@ -1031,3 +1031,130 @@ width:100%;
     0 0 35px rgba(33,212,212,0.35),
     0 0 60px rgba(33,212,212,0.15);
 }
+/* ===== FIX: Почему выбирают нас + иконки ===== */
+
+.advantages .cards{
+  display:grid !important;
+  grid-template-columns:repeat(6, minmax(0, 1fr)) !important;
+  gap:30px !important;
+  align-items:stretch !important;
+}
+
+.advantages .cards > .why-card:nth-child(1){
+  grid-column:1 / span 2 !important;
+}
+
+.advantages .cards > .why-card:nth-child(2){
+  grid-column:3 / span 2 !important;
+}
+
+.advantages .cards > .why-card:nth-child(3){
+  grid-column:5 / span 2 !important;
+}
+
+.advantages .cards > .why-card:nth-child(4){
+  grid-column:2 / span 2 !important;
+}
+
+.advantages .cards > .why-card:nth-child(5){
+  grid-column:4 / span 2 !important;
+}
+
+.advantages .why-card{
+  min-height:330px !important;
+  padding:36px 34px !important;
+  justify-content:flex-start !important;
+}
+
+.advantages .why-card h3{
+  font-size:26px !important;
+  line-height:1.18 !important;
+}
+
+.card-icon{
+  position:relative !important;
+  z-index:2 !important;
+  width:86px !important;
+  height:86px !important;
+  min-width:86px !important;
+  border-radius:50% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  margin-bottom:32px !important;
+
+  background:rgba(33,212,212,0.10) !important;
+  border:1px solid rgba(33,212,212,0.55) !important;
+
+  box-shadow:
+    0 0 25px rgba(33,212,212,0.25),
+    inset 0 0 22px rgba(33,212,212,0.12) !important;
+
+  transition:all 0.55s ease !important;
+}
+
+.card-icon img{
+  width:44px !important;
+  height:44px !important;
+  display:block !important;
+  object-fit:contain !important;
+
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(78%)
+    sepia(92%)
+    saturate(1432%)
+    hue-rotate(130deg)
+    brightness(102%)
+    contrast(101%) !important;
+
+  opacity:1 !important;
+}
+
+.advantages .why-card:hover .card-icon{
+  transform:scale(1.08) translateY(-3px) !important;
+  background:rgba(33,212,212,0.18) !important;
+  border-color:#21d4d4 !important;
+
+  box-shadow:
+    0 0 35px rgba(33,212,212,0.50),
+    0 0 70px rgba(33,212,212,0.22),
+    inset 0 0 25px rgba(33,212,212,0.18) !important;
+}
+
+.advantages .why-card:hover .card-icon img{
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(78%)
+    sepia(92%)
+    saturate(1432%)
+    hue-rotate(130deg)
+    brightness(115%)
+    contrast(105%) !important;
+}
+
+@media(max-width:1100px){
+  .advantages .cards{
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .advantages .cards > .why-card:nth-child(1),
+  .advantages .cards > .why-card:nth-child(2),
+  .advantages .cards > .why-card:nth-child(3),
+  .advantages .cards > .why-card:nth-child(4),
+  .advantages .cards > .why-card:nth-child(5){
+    grid-column:auto !important;
+  }
+}
+
+@media(max-width:650px){
+  .advantages .cards{
+    grid-template-columns:1fr !important;
+  }
+
+  .advantages .why-card{
+    min-height:260px !important;
+  }
+}
