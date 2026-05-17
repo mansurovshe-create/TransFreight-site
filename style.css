@@ -1274,37 +1274,7 @@ width:100%;
   transform:translateX(-50%);
 }
 
-/* glow за курсором в карточках */
-.why-card,
-.step{
-  position:relative;
-  overflow:hidden;
-}
 
-.why-card .mouse-glow,
-.step .mouse-glow{
-  position:absolute;
-  width:140px;
-  height:140px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(33,212,212,0.18), transparent 70%);
-  transform:translate(-50%, -50%);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity 0.25s ease;
-  z-index:0;
-  mix-blend-mode:screen;
-}
-
-.why-card:hover .mouse-glow,
-.step:hover .mouse-glow{
-  opacity:0.75;
-}
-.why-card > *:not(.mouse-glow),
-.step > *:not(.mouse-glow){
-  position:relative;
-  z-index:2;
-}
 
 /* ===== Блок "Как мы работаем" ===== */
 
@@ -1479,4 +1449,118 @@ textarea:focus{
   .step{
     min-height:240px;
   }
+}
+/* ===== CLEAN PREMIUM HOVER ===== */
+
+.why-card,
+.step{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+
+.why-card::before,
+.step::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  padding:1px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(33,212,212,0.0),
+      rgba(33,212,212,0.45),
+      rgba(33,212,212,0.0)
+    );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+
+  opacity:0;
+  transition:opacity 0.45s ease;
+  pointer-events:none;
+}
+
+.why-card::after,
+.step::after{
+  content:"";
+  position:absolute;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:rgba(33,212,212,0.12);
+  filter:blur(70px);
+
+  top:-120px;
+  right:-120px;
+
+  opacity:0;
+  transition:opacity 0.55s ease;
+  z-index:0;
+}
+
+.why-card > *,
+.step > *{
+  position:relative;
+  z-index:2;
+}
+
+.why-card:hover,
+.step:hover{
+  transform:
+    perspective(1000px)
+    rotateX(2deg)
+    rotateY(-2deg)
+    translateY(-10px) !important;
+}
+
+.why-card:hover::before,
+.step:hover::before{
+  opacity:1;
+}
+
+.why-card:hover::after,
+.step:hover::after{
+  opacity:1;
+}
+
+.card-icon{
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    background 0.45s ease !important;
+}
+
+.why-card:hover .card-icon{
+  transform:
+    translateY(-4px)
+    scale(1.06);
+
+  box-shadow:
+    0 0 40px rgba(33,212,212,0.45),
+    0 0 80px rgba(33,212,212,0.18);
+}
+
+.step span{
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    background 0.45s ease !important;
+}
+
+.step:hover span{
+  transform:
+    translateY(-4px)
+    rotate(-4deg)
+    scale(1.06);
+
+  box-shadow:
+    0 0 35px rgba(33,212,212,0.45),
+    0 0 70px rgba(33,212,212,0.18);
 }
