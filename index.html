@@ -182,6 +182,22 @@ Telegram
 
 <h2>Оставить заявку</h2>
 
+<div class="form-switcher">
+
+<button type="button"
+class="switch-btn active"
+id="cargoOwnerBtn">
+Вы грузовладелец
+</button>
+
+<button type="button"
+class="switch-btn"
+id="carrierBtn">
+Вы грузоперевозчик
+</button>
+
+</div>
+<div id="cargoOwnerForm">
 <form id="telegramForm">
 
 <input type="text"
@@ -226,18 +242,9 @@ data-sitekey="0x4AAAAAADRK5G3awvAaMpHT">
 
 </form>
 
+</div>
 
-</section>
-
-<section class="driver-section">
-
-<button type="button" class="driver-toggle-btn" id="driverToggleBtn">
-🚚 Вы водитель?
-</button>
-
-<div class="driver-form-wrapper" id="driverFormWrapper">
-
-<h2>Заявка для водителей</h2>
+<div id="carrierForm" style="display:none;">
 
 <form id="driverForm">
 
@@ -273,6 +280,7 @@ autocomplete="off">
 <div class="cf-turnstile"
 data-sitekey="0x4AAAAAADRK5G3awvAaMpHT">
 </div>
+
 <button type="submit">
 Отправить заявку
 </button>
@@ -288,8 +296,6 @@ data-sitekey="0x4AAAAAADRK5G3awvAaMpHT">
 </form>
 
 </div>
-
-</section>
 
 <footer class="footer">
 <div class="footer-inner">
