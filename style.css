@@ -1216,3 +1216,49 @@ button:disabled{
 .step:hover p{
   transform: translateY(-1px) !important;
 }
+/* ===== FIX: мягкое наведение карточек без дергания ===== */
+
+.why-card,
+.step{
+  transition:
+    transform 0.75s ease,
+    box-shadow 0.75s ease,
+    border-color 0.75s ease,
+    background 0.75s ease !important;
+}
+
+/* убираем жесткий поворот/скачок */
+.why-card:hover,
+.step:hover{
+  transform: translateY(-5px) !important;
+}
+
+/* убираем дергание иконок и цифр */
+.why-card:hover .card-icon,
+.step:hover span{
+  transform: translateY(-3px) !important;
+}
+
+/* текст больше не скачет */
+.why-card:hover h3,
+.why-card:hover p,
+.step:hover h3,
+.step:hover p{
+  transform: none !important;
+}
+
+/* отключаем лишние анимации, которые конфликтуют с hover */
+.why-card::after,
+.step::after,
+.card-icon,
+.step span{
+  animation: none !important;
+}
+
+/* мягкое свечение без резкого движения */
+.why-card:hover,
+.step:hover{
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.32),
+    0 0 26px rgba(33,212,212,0.16) !important;
+}
