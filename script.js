@@ -37,6 +37,25 @@ document.getElementById("telegramForm").addEventListener("submit", async functio
 
 e.preventDefault();
 
+const name =
+document.getElementById("name").value;
+
+const phone =
+document.getElementById("phone").value;
+
+const cleanPhone =
+phone.replace(/\D/g,'');
+
+if(name.length < 2){
+alert("Введите имя");
+return;
+}
+
+if(cleanPhone.length < 11){
+alert("Введите корректный телефон");
+return;
+}
+
 const name = document.getElementById("name").value;
 const phone = document.getElementById("phone").value;
 const route = document.getElementById("route").value;
