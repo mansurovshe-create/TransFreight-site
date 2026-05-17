@@ -10,34 +10,38 @@ errorMessage.classList.remove("show");
 
 const phoneInput = document.getElementById("phone");
 
-phoneInput.addEventListener("input", function() {
+phoneInput.addEventListener("input", function(){
 let value = phoneInput.value.replace(/\D/g, "");
 
-if (value.startsWith("8")) {
+if(value.startsWith("8")){
 value = "7" + value.slice(1);
 }
 
-if (!value.startsWith("7")) {
+if(value && !value.startsWith("7")){
 value = "7" + value;
 }
 
 value = value.substring(0, 11);
 
-let formatted = "+7";
+let formatted = "";
 
-if (value.length > 1) {
+if(value.length > 0){
+formatted = "+7";
+}
+
+if(value.length > 1){
 formatted += " (" + value.substring(1, 4);
 }
 
-if (value.length >= 4) {
+if(value.length >= 4){
 formatted += ") " + value.substring(4, 7);
 }
 
-if (value.length >= 7) {
+if(value.length >= 7){
 formatted += "-" + value.substring(7, 9);
 }
 
-if (value.length >= 9) {
+if(value.length >= 9){
 formatted += "-" + value.substring(9, 11);
 }
 
@@ -66,14 +70,20 @@ showError("Введите корректный телефон");
 return;
 }
 
+const tokenField = document.querySelector('[name="cf-turnstile-response"]');
+
+if(!tokenField || !tokenField.value){
+showError("Подтвердите проверку Cloudflare");
+return;
+}
+
+const token = tokenField.value;
+
 const button = document.querySelector("#telegramForm button[type='submit']");
 button.disabled = true;
 button.textContent = "Отправка...";
 
 try{
-
-const token =
-document.querySelector('[name="cf-turnstile-response"]').value;
 
 const response = await fetch("https://noisy-breeze-f037.mansurov-she.workers.dev", {
 method: "POST",
@@ -107,6 +117,10 @@ successMessage.classList.remove("show");
 }, 4000);
 
 document.getElementById("telegramForm").reset();
+
+if(typeof turnstile !== "undefined"){
+turnstile.reset();
+}
 
 }catch(error){
 
