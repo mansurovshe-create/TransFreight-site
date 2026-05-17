@@ -262,10 +262,11 @@ headers: {
 "Content-Type": "application/json"
 },
 body: JSON.stringify({
-name: name,
+type: "driver",
+name: "🚚 ВОДИТЕЛЬ: " + name,
 phone: phone,
 route: "Заявка от водителя",
-cargo: "Город: " + city + "\nМашина: " + car,
+cargo: "Город водителя: " + city + "\nМашина: " + car,
 website: "",
 token: tokenField.value
 })
