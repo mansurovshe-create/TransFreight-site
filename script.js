@@ -209,14 +209,7 @@ button.textContent = "Отправить заявку";
 }
 });
 
-const driverToggleBtn = document.getElementById("driverToggleBtn");
-const driverFormWrapper = document.getElementById("driverFormWrapper");
 
-if(driverToggleBtn && driverFormWrapper){
-driverToggleBtn.addEventListener("click", function(){
-driverFormWrapper.classList.toggle("active");
-});
-}
 
 const driverForm = document.getElementById("driverForm");
 
@@ -292,4 +285,33 @@ button.disabled = false;
 button.textContent = "Отправить заявку";
 }
 });
+}
+const cargoOwnerBtn = document.getElementById("cargoOwnerBtn");
+const carrierBtn = document.getElementById("carrierBtn");
+
+const cargoOwnerForm = document.getElementById("cargoOwnerForm");
+const carrierForm = document.getElementById("carrierForm");
+
+if(cargoOwnerBtn && carrierBtn){
+
+cargoOwnerBtn.addEventListener("click", function(){
+
+cargoOwnerBtn.classList.add("active");
+carrierBtn.classList.remove("active");
+
+cargoOwnerForm.style.display = "block";
+carrierForm.style.display = "none";
+
+});
+
+carrierBtn.addEventListener("click", function(){
+
+carrierBtn.classList.add("active");
+cargoOwnerBtn.classList.remove("active");
+
+cargoOwnerForm.style.display = "none";
+carrierForm.style.display = "block";
+
+});
+
 }
