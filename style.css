@@ -2434,3 +2434,329 @@ html::before{
     background:rgba(33,212,212,0.16) !important;
   }
 }
+
+/* ===== FINAL FIX: mobile card tap reveal + responsive safety ===== */
+
+.why-card,
+.step{
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.why-card:focus,
+.step:focus{
+  outline:none;
+}
+
+.why-card:focus-visible,
+.step:focus-visible{
+  outline:2px solid rgba(33,212,212,0.65);
+  outline-offset:4px;
+}
+
+@media(max-width:768px){
+  html,
+  body{
+    width:100% !important;
+    max-width:100% !important;
+    overflow-x:hidden !important;
+  }
+
+  .cargo-map-section{
+    display:none !important;
+  }
+
+  .why-card,
+  .step{
+    position:relative !important;
+    overflow:hidden !important;
+    transform:none !important;
+    touch-action:manipulation;
+  }
+
+  .why-card p,
+  .step p{
+    display:block !important;
+    position:absolute !important;
+    left:24px !important;
+    right:24px !important;
+    bottom:24px !important;
+    max-height:none !important;
+    opacity:0 !important;
+    visibility:hidden !important;
+    transform:translateY(12px) !important;
+    pointer-events:none !important;
+    transition:
+      opacity .52s ease,
+      transform .52s cubic-bezier(0.22,1,0.36,1),
+      visibility .52s ease !important;
+  }
+
+  .why-card:hover p,
+  .step:hover p{
+    opacity:0 !important;
+    visibility:hidden !important;
+    transform:translateY(12px) !important;
+  }
+
+  .why-card.is-open p,
+  .step.is-open p{
+    opacity:1 !important;
+    visibility:visible !important;
+    transform:translateY(0) !important;
+  }
+
+  .why-card.is-open,
+  .step.is-open{
+    background:linear-gradient(180deg, rgba(17,197,198,0.13), rgba(255,255,255,0.05)) !important;
+    border-color:rgba(33,212,212,0.72) !important;
+    box-shadow:0 12px 26px rgba(0,0,0,0.24), 0 0 18px rgba(33,212,212,0.10) !important;
+  }
+
+  .why-card.is-open h3,
+  .step.is-open h3{
+    color:#21d4d4 !important;
+  }
+
+  .why-card.is-open .card-icon,
+  .step.is-open span{
+    background:rgba(33,212,212,0.16) !important;
+    box-shadow:0 0 18px rgba(33,212,212,0.20) !important;
+  }
+
+  .cards,
+  .steps-container,
+  .footer-inner{
+    width:100% !important;
+    max-width:100% !important;
+  }
+}
+
+@media(min-width:769px) and (max-width:1180px){
+  .cargo-map-section{
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+
+  .cargo-map-clean-final,
+  .cargo-map{
+    max-width:100% !important;
+  }
+
+  .city-label{
+    font-size:10px !important;
+  }
+}
+
+@media(min-width:1181px){
+  .cargo-map-clean-final,
+  .cargo-map{
+    max-width:1720px !important;
+  }
+}
+
+/* ===== FINAL MOBILE TOUCH REVEAL: hover/touch без JS ===== */
+
+@media(max-width:768px){
+  .why-card,
+  .step{
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+  }
+
+  .why-card p,
+  .step p{
+    opacity:0 !important;
+    pointer-events:none !important;
+    transform:translateY(14px) !important;
+    transition:
+      opacity .7s ease,
+      transform .7s cubic-bezier(0.22,1,0.36,1) !important;
+  }
+
+  .why-card:hover p,
+  .why-card:active p,
+  .why-card:focus p,
+  .why-card:focus-within p,
+  .step:hover p,
+  .step:active p,
+  .step:focus p,
+  .step:focus-within p{
+    opacity:1 !important;
+    transform:translateY(0) !important;
+  }
+
+  .why-card:hover,
+  .why-card:active,
+  .why-card:focus,
+  .why-card:focus-within,
+  .step:hover,
+  .step:active,
+  .step:focus,
+  .step:focus-within{
+    border-color:rgba(33,212,212,0.72) !important;
+    background:linear-gradient(180deg, rgba(17,197,198,0.13), rgba(255,255,255,0.045)) !important;
+    box-shadow:0 12px 26px rgba(0,0,0,0.24), 0 0 18px rgba(33,212,212,0.10) !important;
+    transform:none !important;
+  }
+
+  .why-card:hover h3,
+  .why-card:active h3,
+  .why-card:focus h3,
+  .why-card:focus-within h3,
+  .step:hover h3,
+  .step:active h3,
+  .step:focus h3,
+  .step:focus-within h3{
+    color:#21d4d4 !important;
+  }
+
+  .why-card:hover .card-icon,
+  .why-card:active .card-icon,
+  .why-card:focus .card-icon,
+  .why-card:focus-within .card-icon,
+  .step:hover span,
+  .step:active span,
+  .step:focus span,
+  .step:focus-within span{
+    background:rgba(33,212,212,0.16) !important;
+    box-shadow:0 0 18px rgba(33,212,212,0.18) !important;
+    transform:none !important;
+  }
+}
+
+/* ===== FOOTER PREMIUM CLEANUP ===== */
+
+.footer{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(33,212,212,0.08), transparent 34%),
+    linear-gradient(180deg, rgba(5,11,18,0.92), #050b12 72%) !important;
+  border-top:1px solid rgba(33,212,212,0.18) !important;
+}
+
+.footer::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(33,212,212,0.72), transparent);
+  pointer-events:none;
+}
+
+.footer-inner{
+  align-items:stretch !important;
+}
+
+.footer-inner > div{
+  position:relative;
+  overflow:hidden;
+  padding:24px 24px 22px !important;
+  border-radius:24px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.072), rgba(255,255,255,0.026)) !important;
+  border:1px solid rgba(255,255,255,0.12) !important;
+  box-shadow:0 18px 42px rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.07) !important;
+}
+
+.footer-inner > div::after{
+  content:"";
+  position:absolute;
+  inset:1px;
+  border-radius:23px;
+  pointer-events:none;
+  background:linear-gradient(135deg, rgba(255,255,255,0.10), transparent 34%, rgba(33,212,212,0.035));
+}
+
+.footer h3{
+  margin-bottom:14px !important;
+  color:#21d4d4 !important;
+  letter-spacing:-0.02em;
+}
+
+.footer p{
+  margin:0 0 10px !important;
+  color:#b9c8d3 !important;
+  line-height:1.55 !important;
+}
+
+.footer p:last-child{
+  margin-bottom:0 !important;
+}
+
+.footer strong{
+  color:#ffffff;
+}
+
+.footer a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#21d4d4 !important;
+  font-weight:700;
+  transition:opacity .35s ease, transform .35s ease, color .35s ease;
+}
+
+.footer a:hover{
+  opacity:.86;
+  transform:translateX(3px);
+}
+
+.footer-bottom{
+  max-width:1200px;
+  margin:34px auto 0 !important;
+  padding:18px 20px 0 !important;
+  border-top:1px solid rgba(255,255,255,0.075) !important;
+  text-align:center;
+  color:#748693 !important;
+}
+
+@media(max-width:768px){
+  .footer{
+    padding:42px 20px 22px !important;
+  }
+
+  .footer-inner{
+    gap:18px !important;
+  }
+
+  .footer-inner > div{
+    padding:22px 20px !important;
+    border-radius:22px !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    box-shadow:0 12px 28px rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.07) !important;
+  }
+
+  .footer h3{
+    font-size:24px !important;
+  }
+
+  .footer p{
+    font-size:15px;
+  }
+
+  .footer a:hover{
+    transform:none;
+  }
+}
+
+/* ===== RESPONSIVE SAFETY ===== */
+
+html,
+body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+.cargo-map-section,
+.advantages,
+.steps,
+.contact,
+.footer{
+  max-width:100%;
+}
