@@ -1516,3 +1516,411 @@ html::before{
   }
 }
 
+
+
+/* ===== REAL RUSSIA CARGO MAP: крупные города + реальные относительные позиции ===== */
+
+.cargo-map-section{
+  padding:110px 20px 100px !important;
+}
+
+.cargo-map-head{
+  max-width:1200px;
+  margin:0 auto 34px;
+  display:grid;
+  grid-template-columns:minmax(0, 1.15fr) minmax(360px, .85fr);
+  gap:34px;
+  align-items:end;
+}
+
+.cargo-map-head h2{
+  text-align:left;
+  margin-bottom:18px;
+}
+
+.cargo-map-head h2::after{
+  margin-left:0;
+}
+
+.cargo-map-head p{
+  max-width:680px;
+  color:#aebdca;
+  font-size:18px;
+  line-height:1.65;
+}
+
+.cargo-map-features{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:14px;
+}
+
+.cargo-map-features div{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  min-height:86px;
+  padding:16px 18px;
+  border-radius:20px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.03));
+  border:1px solid rgba(255,255,255,0.13);
+  box-shadow:0 16px 40px rgba(0,0,0,0.23), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.cargo-map-features span{
+  flex:0 0 auto;
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#21d4d4;
+  border:1px solid rgba(33,212,212,0.45);
+  box-shadow:0 0 18px rgba(33,212,212,0.16);
+  font-size:24px;
+}
+
+.cargo-map-features b{
+  color:#ffffff;
+  font-size:15px;
+  line-height:1.35;
+}
+
+.cargo-map-russia{
+  max-width:1220px !important;
+  height:720px !important;
+  border-radius:32px !important;
+}
+
+.route-map{
+  top:0;
+  height:560px !important;
+}
+
+.russia-regions,
+.region{
+  display:none !important;
+}
+
+.russia-base{
+  opacity:.72;
+}
+
+.russia-outline{
+  fill:rgba(33,212,212,0.055);
+  stroke:rgba(33,212,212,0.35);
+  stroke-width:1.1;
+  filter:drop-shadow(0 0 18px rgba(33,212,212,0.12));
+}
+
+.map-border-line{
+  fill:none;
+  stroke:rgba(33,212,212,0.10);
+  stroke-width:.8;
+  stroke-dasharray:7 12;
+}
+
+.route{
+  fill:none;
+  stroke-width:1.65;
+  stroke-linecap:round;
+  stroke-dasharray:8 12;
+  opacity:.7;
+}
+
+.route-main{
+  stroke:#21d4d4;
+  opacity:.78;
+}
+
+.route-alt{
+  stroke:#ffb35a;
+  opacity:.62;
+}
+
+.route-extra{
+  stroke:#ffffff;
+  opacity:.42;
+}
+
+.city-node circle{
+  fill:#07111c;
+  stroke:#21d4d4;
+  stroke-width:2.4;
+  filter:url(#cityGlow);
+}
+
+.city-node.big circle{
+  stroke-width:3;
+  fill:rgba(33,212,212,0.12);
+}
+
+.city-node text{
+  fill:#eef6fa;
+  font-size:13px;
+  font-weight:700;
+  paint-order:stroke;
+  stroke:rgba(7,17,28,0.92);
+  stroke-width:4px;
+  stroke-linejoin:round;
+}
+
+.city-node.big text{
+  font-size:14px;
+  fill:#ffffff;
+}
+
+.cargo-dot{
+  fill:#21d4d4;
+  filter:drop-shadow(0 0 9px rgba(33,212,212,0.95));
+}
+
+.cargo-dot.white{
+  fill:#ffffff;
+  filter:drop-shadow(0 0 8px rgba(255,255,255,0.8));
+}
+
+.cargo-dot.orange{
+  fill:#ffb35a;
+  filter:drop-shadow(0 0 8px rgba(255,179,90,0.82));
+}
+
+.map-stats{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:78px;
+  z-index:4;
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:0;
+  overflow:hidden;
+  border-radius:20px;
+  background:rgba(7,17,28,0.62);
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow:0 18px 42px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+
+.map-stats div{
+  padding:22px 24px;
+  border-right:1px solid rgba(255,255,255,0.08);
+}
+
+.map-stats div:last-child{
+  border-right:none;
+}
+
+.map-stats strong{
+  display:block;
+  margin-bottom:6px;
+  color:#21d4d4;
+  font-size:26px;
+  line-height:1;
+}
+
+.map-stats span{
+  color:#aebdca;
+  font-size:14px;
+}
+
+.map-legend{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:18px;
+  z-index:4;
+  display:flex;
+  justify-content:center;
+  gap:38px;
+  flex-wrap:wrap;
+  padding:18px;
+  border-radius:18px;
+  background:rgba(7,17,28,0.56);
+  border:1px solid rgba(255,255,255,0.10);
+}
+
+.map-legend span{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  color:#aebdca;
+  font-size:14px;
+}
+
+.map-legend i{
+  display:inline-block;
+  width:44px;
+  height:0;
+  border-top:2px dashed currentColor;
+}
+
+.legend-main{ color:#21d4d4; }
+.legend-alt{ color:#ffb35a; }
+.legend-extra{ color:#ffffff; opacity:.72; }
+.legend-dot{
+  width:12px !important;
+  height:12px !important;
+  border:none !important;
+  border-radius:50%;
+  background:#21d4d4;
+  box-shadow:0 0 10px rgba(33,212,212,.75);
+}
+
+/* возвращаем плавное раскрытие текста карточек, если оно было перебито картой */
+.why-card p,
+.step p{
+  pointer-events:none;
+}
+
+.why-card:hover p,
+.why-card:active p,
+.why-card:focus-within p,
+.step:hover p,
+.step:active p,
+.step:focus-within p{
+  opacity:1 !important;
+  transform:translateY(0) !important;
+}
+
+@media(max-width:1100px){
+  .cargo-map-head{
+    grid-template-columns:1fr;
+  }
+
+  .cargo-map-features{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media(max-width:768px){
+  .cargo-map-section{
+    padding:72px 16px !important;
+  }
+
+  .cargo-map-head{
+    gap:20px;
+    margin-bottom:24px;
+  }
+
+  .cargo-map-head h2{
+    text-align:center;
+  }
+
+  .cargo-map-head h2::after{
+    margin-left:auto;
+  }
+
+  .cargo-map-head p{
+    text-align:center;
+    font-size:15.5px;
+  }
+
+  .cargo-map-features{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .cargo-map-features div{
+    min-height:auto;
+    padding:14px 16px;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+
+  .cargo-map-russia{
+    height:520px !important;
+    border-radius:24px !important;
+  }
+
+  .route-map{
+    height:390px !important;
+    width:160% !important;
+    left:-36%;
+    top:0;
+  }
+
+  .map-glow{
+    animation:none !important;
+    opacity:.25 !important;
+  }
+
+  .russia-base{
+    opacity:.55;
+  }
+
+  .route-main{
+    opacity:.62;
+  }
+
+  .route-alt,
+  .route-extra{
+    opacity:.28;
+  }
+
+  .city-node text{
+    font-size:12px;
+  }
+
+  .cities .city-node:nth-child(3n+1) text,
+  .cities .city-node:nth-child(4n+2) text{
+    display:none;
+  }
+
+  .cargo-moving .moving-dot:nth-child(n+6){
+    display:none;
+  }
+
+  .cargo-dot{
+    filter:none !important;
+  }
+
+  .map-stats{
+    left:14px;
+    right:14px;
+    bottom:74px;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+
+  .map-stats div{
+    padding:14px 15px;
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+
+  .map-stats div:nth-child(odd){
+    border-right:1px solid rgba(255,255,255,0.08);
+  }
+
+  .map-stats strong{
+    font-size:20px;
+  }
+
+  .map-stats span{
+    font-size:12.5px;
+  }
+
+  .map-legend{
+    left:14px;
+    right:14px;
+    bottom:14px;
+    gap:14px;
+    justify-content:flex-start;
+    padding:12px;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+
+  .map-legend span{
+    font-size:11.5px;
+    gap:7px;
+  }
+
+  .map-legend i{
+    width:24px;
+  }
+}
