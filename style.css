@@ -1095,3 +1095,52 @@ body::before{
 html::before{
   background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%222200%22%20height%3D%221400%22%20viewBox%3D%220%200%202200%201400%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3Cfilter%20id%3D%22glow%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%223%22%20result%3D%22blur%22/%3E%0A%20%20%20%20%20%20%3CfeMerge%3E%0A%20%20%20%20%20%20%20%20%3CfeMergeNode%20in%3D%22blur%22/%3E%0A%20%20%20%20%20%20%20%20%3CfeMergeNode%20in%3D%22SourceGraphic%22/%3E%0A%20%20%20%20%20%20%3C/feMerge%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%2321d4d4%22%20stroke-width%3D%221.3%22%20stroke-linecap%3D%22round%22%20stroke-dasharray%3D%228%2018%22%20opacity%3D%220.18%22%3E%0A%20%20%20%20%3Cpath%20id%3D%22r1%22%20d%3D%22M-180%2095%20C180%20-35%20420%20145%20720%2065%20S1180%200%201460%20105%20S1820%20230%202380%20115%22/%3E%0A%20%20%20%20%3Cpath%20id%3D%22r2%22%20d%3D%22M-170%20470%20C130%20220%20360%20620%20140%20820%20S470%201220%20780%20950%20S980%20640%201240%20740%22/%3E%0A%20%20%20%20%3Cpath%20id%3D%22r3%22%20d%3D%22M-200%201240%20C260%20900%20430%201030%20760%20760%20S1150%20280%201540%20380%20S1840%20590%202380%20420%22/%3E%0A%20%20%20%20%3Cpath%20id%3D%22r4%22%20d%3D%22M-220%20720%20C190%20530%20430%20850%20760%20650%20S1180%20360%201500%20610%20S1840%20980%202400%20690%22/%3E%0A%20%20%20%20%3Cpath%20id%3D%22r5%22%20d%3D%22M-180%201080%20C180%201320%20460%20930%20790%201100%20S1230%201380%201580%201080%20S1900%20780%202380%201040%22/%3E%0A%20%20%20%20%3Cpath%20id%3D%22r6%22%20d%3D%22M1780%20-160%20C2040%20120%201640%20340%201840%20610%20S2160%20880%201870%201560%22/%3E%0A%20%20%20%20%3Cpath%20id%3D%22r7%22%20d%3D%22M260%20-160%20C70%20160%20520%20320%20320%20570%20S-60%20920%20250%201160%20S610%201320%20560%201560%22/%3E%0A%20%20%20%20%3Cpath%20id%3D%22r8%22%20d%3D%22M840%20-120%20C1180%20120%201450%20-20%201660%20210%20S1780%20520%202060%20440%20S2290%20270%202400%20390%22/%3E%0A%20%20%20%20%3Cpath%20id%3D%22r9%22%20d%3D%22M-220%20900%20C260%20780%20500%20840%20840%20890%20S1310%201010%201650%20860%20S2050%20650%202380%20820%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20filter%3D%22url%28%23glow%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%224.4%22%20fill%3D%22%2321d4d4%22%20opacity%3D%220.78%22%3E%0A%20%20%20%20%20%20%3CanimateMotion%20dur%3D%2224s%22%20repeatCount%3D%22indefinite%22%20rotate%3D%22auto%22%3E%3Cmpath%20href%3D%22%23r1%22/%3E%3C/animateMotion%3E%0A%20%20%20%20%3C/circle%3E%0A%20%20%20%20%3Ccircle%20r%3D%224%22%20fill%3D%22%23ffb04d%22%20opacity%3D%220.66%22%3E%0A%20%20%20%20%20%20%3CanimateMotion%20dur%3D%2229s%22%20begin%3D%22-8s%22%20repeatCount%3D%22indefinite%22%20rotate%3D%22auto%22%3E%3Cmpath%20href%3D%22%23r2%22/%3E%3C/animateMotion%3E%0A%20%20%20%20%3C/circle%3E%0A%20%20%20%20%3Ccircle%20r%3D%224.2%22%20fill%3D%22%2321d4d4%22%20opacity%3D%220.64%22%3E%0A%20%20%20%20%20%20%3CanimateMotion%20dur%3D%2232s%22%20begin%3D%22-13s%22%20repeatCount%3D%22indefinite%22%20rotate%3D%22auto%22%3E%3Cmpath%20href%3D%22%23r3%22/%3E%3C/animateMotion%3E%0A%20%20%20%20%3C/circle%3E%0A%20%20%20%20%3Ccircle%20r%3D%224.7%22%20fill%3D%22%2321d4d4%22%20opacity%3D%220.68%22%3E%0A%20%20%20%20%20%20%3CanimateMotion%20dur%3D%2230s%22%20begin%3D%22-17s%22%20repeatCount%3D%22indefinite%22%20rotate%3D%22auto%22%3E%3Cmpath%20href%3D%22%23r4%22/%3E%3C/animateMotion%3E%0A%20%20%20%20%3C/circle%3E%0A%20%20%20%20%3Ccircle%20r%3D%223.9%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.46%22%3E%0A%20%20%20%20%20%20%3CanimateMotion%20dur%3D%2234s%22%20begin%3D%22-22s%22%20repeatCount%3D%22indefinite%22%20rotate%3D%22auto%22%3E%3Cmpath%20href%3D%22%23r5%22/%3E%3C/animateMotion%3E%0A%20%20%20%20%3C/circle%3E%0A%20%20%20%20%3Ccircle%20r%3D%223.8%22%20fill%3D%22%23ffb04d%22%20opacity%3D%220.54%22%3E%0A%20%20%20%20%20%20%3CanimateMotion%20dur%3D%2236s%22%20begin%3D%22-18s%22%20repeatCount%3D%22indefinite%22%20rotate%3D%22auto%22%3E%3Cmpath%20href%3D%22%23r6%22/%3E%3C/animateMotion%3E%0A%20%20%20%20%3C/circle%3E%0A%20%20%20%20%3Ccircle%20r%3D%223.7%22%20fill%3D%22%2321d4d4%22%20opacity%3D%220.52%22%3E%0A%20%20%20%20%20%20%3CanimateMotion%20dur%3D%2238s%22%20begin%3D%22-26s%22%20repeatCount%3D%22indefinite%22%20rotate%3D%22auto%22%3E%3Cmpath%20href%3D%22%23r7%22/%3E%3C/animateMotion%3E%0A%20%20%20%20%3C/circle%3E%0A%20%20%20%20%3Ccircle%20r%3D%223.8%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.42%22%3E%0A%20%20%20%20%20%20%3CanimateMotion%20dur%3D%2231s%22%20begin%3D%22-11s%22%20repeatCount%3D%22indefinite%22%20rotate%3D%22auto%22%3E%3Cmpath%20href%3D%22%23r8%22/%3E%3C/animateMotion%3E%0A%20%20%20%20%3C/circle%3E%0A%20%20%20%20%3Ccircle%20r%3D%224.1%22%20fill%3D%22%2321d4d4%22%20opacity%3D%220.56%22%3E%0A%20%20%20%20%20%20%3CanimateMotion%20dur%3D%2235s%22%20begin%3D%22-20s%22%20repeatCount%3D%22indefinite%22%20rotate%3D%22auto%22%3E%3Cmpath%20href%3D%22%23r9%22/%3E%3C/animateMotion%3E%0A%20%20%20%20%3C/circle%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E") !important;
 }
+/* ===== WHY CARDS: скрытый текст до наведения ===== */
+
+.why-card{
+  min-height:220px;
+  justify-content:flex-start;
+}
+
+.why-card h3{
+  margin-top:auto;
+  transition:
+    transform .8s cubic-bezier(0.22,1,0.36,1),
+    color .6s ease;
+}
+
+.why-card p{
+  opacity:0;
+  max-height:0;
+  overflow:hidden;
+  transform:translateY(18px);
+  transition:
+    opacity .9s ease,
+    transform .9s cubic-bezier(0.22,1,0.36,1),
+    max-height 1s ease;
+}
+
+.why-card:hover p{
+  opacity:1;
+  max-height:140px;
+  transform:translateY(0);
+}
+
+.why-card:hover h3{
+  transform:translateY(-8px);
+}
+
+/* мобильные — текст всегда открыт */
+@media(max-width:768px){
+
+  .why-card p{
+    opacity:1 !important;
+    max-height:300px !important;
+    transform:none !important;
+    margin-top:14px;
+  }
+
+  .why-card:hover h3{
+    transform:none;
+  }
+}
