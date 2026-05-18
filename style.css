@@ -29,37 +29,6 @@ body::before{
   position:fixed;
   inset:0;
   z-index:-2;
-  pointer-events:none;*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
-}
-
-html{
-  scroll-behavior:smooth;
-  width:100%;
-  max-width:100%;
-  overflow-x:hidden;
-}
-
-body{
-  width:100%;
-  max-width:100%;
-  overflow-x:hidden;
-  background:
-    radial-gradient(circle at 12% 18%, rgba(33,212,212,0.10), transparent 32%),
-    radial-gradient(circle at 88% 62%, rgba(255,140,0,0.08), transparent 34%),
-    linear-gradient(180deg, #07111c 0%, #08131f 45%, #091521 100%);
-  color:#ffffff;
-}
-
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-2;
   pointer-events:none;
   background:
     radial-gradient(circle at 12% 18%, rgba(33,212,212,0.12), transparent 34%),
@@ -3110,5 +3079,111 @@ body{
   .hero .btn.primary{
     min-width:0;
     border-radius:16px !important;
+  }
+}
+
+/* ===== SAFE HERO CTA + TITLE GLOW UPDATE ===== */
+/* Добавлено точечно: только шапка сайта. Остальные блоки не затрагиваются. */
+
+.hero h1{
+  animation:heroTitleSoftGlow 7s ease-in-out infinite !important;
+}
+
+@keyframes heroTitleSoftGlow{
+  0%,100%{
+    text-shadow:
+      0 12px 36px rgba(0,0,0,0.58),
+      0 0 26px rgba(33,212,212,0.10) !important;
+  }
+  50%{
+    text-shadow:
+      0 12px 36px rgba(0,0,0,0.58),
+      0 0 46px rgba(33,212,212,0.22) !important;
+  }
+}
+
+.hero h1::before{
+  animation:heroAuraSoftPulse 8s ease-in-out infinite !important;
+}
+
+@keyframes heroAuraSoftPulse{
+  0%,100%{
+    opacity:.58;
+    filter:blur(18px);
+  }
+  50%{
+    opacity:.9;
+    filter:blur(22px);
+  }
+}
+
+.hero .buttons{
+  margin-top:46px !important;
+}
+
+.hero .btn.primary{
+  min-width:248px !important;
+  min-height:62px !important;
+  padding:18px 36px !important;
+  border-radius:18px !important;
+  font-size:17px !important;
+  letter-spacing:.01em !important;
+  background:
+    linear-gradient(135deg,
+      #21d4d4 0%,
+      #52eeee 48%,
+      #11b9bc 100%) !important;
+  border:1px solid rgba(255,255,255,0.22) !important;
+  box-shadow:
+    0 16px 38px rgba(33,212,212,0.26),
+    0 0 0 1px rgba(255,255,255,0.05) inset,
+    inset 0 1px 0 rgba(255,255,255,0.42) !important;
+  transition:
+    transform .45s cubic-bezier(.22,1,.36,1),
+    box-shadow .45s ease,
+    filter .45s ease !important;
+}
+
+.hero .btn.primary:hover{
+  transform:translateY(-3px) scale(1.015) !important;
+  filter:brightness(1.04);
+  box-shadow:
+    0 22px 48px rgba(33,212,212,0.34),
+    0 0 28px rgba(33,212,212,0.16),
+    0 0 0 1px rgba(255,255,255,0.07) inset,
+    inset 0 1px 0 rgba(255,255,255,0.48) !important;
+}
+
+.hero .btn.primary:active{
+  transform:translateY(-1px) scale(1.005) !important;
+}
+
+@media(max-width:768px){
+  .hero .buttons{
+    margin-top:36px !important;
+  }
+
+  .hero .btn.primary{
+    width:100% !important;
+    min-width:0 !important;
+    min-height:60px !important;
+    padding:18px 22px !important;
+    font-size:16px !important;
+    border-radius:16px !important;
+  }
+
+  .hero h1{
+    animation:heroTitleSoftGlow 8s ease-in-out infinite !important;
+  }
+
+  .hero h1::before{
+    animation:heroAuraSoftPulse 9s ease-in-out infinite !important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hero h1,
+  .hero h1::before{
+    animation:none !important;
   }
 }
