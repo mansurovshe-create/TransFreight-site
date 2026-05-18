@@ -1924,3 +1924,199 @@ html::before{
     width:24px;
   }
 }
+
+
+/* ===== RESTORE CARD REVEAL ANIMATION: WHY + STEPS ===== */
+/* Этот блок должен быть в самом низу файла. Он возвращает скрытый текст,
+   который плавно появляется при наведении на ПК и при тапе на телефоне. */
+
+.cards,
+.steps-container{
+  align-items:stretch !important;
+}
+
+.why-card,
+.step{
+  position:relative !important;
+  overflow:hidden !important;
+  cursor:pointer;
+  transform:none !important;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+  transition:
+    background .75s ease,
+    border-color .75s ease,
+    box-shadow .75s ease !important;
+}
+
+.why-card{
+  min-height:280px !important;
+  padding:34px 30px 120px !important;
+}
+
+.step{
+  min-height:300px !important;
+  padding:36px 28px 118px !important;
+}
+
+.why-card:hover,
+.why-card:active,
+.why-card:focus,
+.why-card:focus-within,
+.step:hover,
+.step:active,
+.step:focus,
+.step:focus-within{
+  transform:none !important;
+  border-color:rgba(33,212,212,0.72) !important;
+  background:linear-gradient(180deg, rgba(17,197,198,0.12), rgba(255,255,255,0.04)) !important;
+  box-shadow:
+    0 22px 54px rgba(0,0,0,0.30),
+    0 0 28px rgba(33,212,212,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.10) !important;
+}
+
+.why-card h3,
+.step h3{
+  transform:none !important;
+  transition:color .65s ease !important;
+}
+
+.why-card:hover h3,
+.why-card:active h3,
+.why-card:focus h3,
+.why-card:focus-within h3,
+.step:hover h3,
+.step:active h3,
+.step:focus h3,
+.step:focus-within h3{
+  color:#21d4d4 !important;
+  transform:none !important;
+}
+
+.why-card p,
+.step p{
+  position:absolute !important;
+  margin:0 !important;
+  max-height:none !important;
+  overflow:visible !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+  color:#c5d3dc !important;
+  transform:translateY(14px) !important;
+  transition:
+    opacity .75s ease,
+    transform .75s cubic-bezier(0.22,1,0.36,1) !important;
+}
+
+.why-card p{
+  left:30px !important;
+  right:30px !important;
+  bottom:28px !important;
+}
+
+.step p{
+  left:28px !important;
+  right:28px !important;
+  bottom:30px !important;
+}
+
+.why-card:hover p,
+.why-card:active p,
+.why-card:focus p,
+.why-card:focus-within p,
+.step:hover p,
+.step:active p,
+.step:focus p,
+.step:focus-within p{
+  opacity:1 !important;
+  transform:translateY(0) !important;
+}
+
+.why-card .card-icon,
+.step span{
+  animation:none !important;
+  transform:none !important;
+  transition:
+    background .65s ease,
+    box-shadow .65s ease,
+    color .65s ease !important;
+}
+
+.why-card:hover .card-icon,
+.why-card:active .card-icon,
+.why-card:focus .card-icon,
+.why-card:focus-within .card-icon{
+  animation:none !important;
+  transform:none !important;
+  background:rgba(33,212,212,0.17) !important;
+  box-shadow:0 0 28px rgba(33,212,212,0.26), inset 0 0 20px rgba(33,212,212,0.10) !important;
+}
+
+.step:hover span,
+.step:active span,
+.step:focus span,
+.step:focus-within span{
+  animation:none !important;
+  transform:none !important;
+  color:#07111f !important;
+  background:#21d4d4 !important;
+  box-shadow:0 0 28px rgba(33,212,212,0.26), inset 0 0 20px rgba(255,255,255,0.12) !important;
+}
+
+@media(max-width:768px){
+  .why-card{
+    min-height:235px !important;
+    padding:28px 24px 108px !important;
+  }
+
+  .step{
+    min-height:250px !important;
+    padding:30px 24px 108px !important;
+  }
+
+  .why-card p,
+  .step p{
+    left:24px !important;
+    right:24px !important;
+    bottom:24px !important;
+    opacity:0 !important;
+    transform:translateY(12px) !important;
+    transition:
+      opacity .36s ease,
+      transform .36s ease !important;
+  }
+
+  .why-card:active p,
+  .why-card:focus p,
+  .why-card:focus-within p,
+  .step:active p,
+  .step:focus p,
+  .step:focus-within p{
+    opacity:1 !important;
+    transform:translateY(0) !important;
+  }
+
+  .why-card:hover p,
+  .step:hover p{
+    opacity:0 !important;
+  }
+
+  .why-card:hover,
+  .step:hover{
+    background:linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.028)) !important;
+    border-color:rgba(255,255,255,0.14) !important;
+    box-shadow:0 10px 24px rgba(0,0,0,0.22) !important;
+  }
+
+  .why-card:active,
+  .why-card:focus,
+  .why-card:focus-within,
+  .step:active,
+  .step:focus,
+  .step:focus-within{
+    background:linear-gradient(180deg, rgba(17,197,198,0.13), rgba(255,255,255,0.05)) !important;
+    border-color:rgba(33,212,212,0.72) !important;
+    box-shadow:0 12px 26px rgba(0,0,0,0.24), 0 0 18px rgba(33,212,212,0.10) !important;
+  }
+}
