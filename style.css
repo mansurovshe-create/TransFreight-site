@@ -1131,17 +1131,46 @@ html::before{
 }
 
 /* мобильные — текст всегда открыт */
+/* ===== MOBILE TAP ANIMATION ===== */
+
 @media(max-width:768px){
 
-  .why-card p{
-    opacity:1 !important;
-    max-height:300px !important;
-    transform:none !important;
-    margin-top:14px;
+  .why-card{
+    min-height:220px;
   }
 
-  .why-card:hover h3{
-    transform:none;
+  .why-card p{
+    opacity:0 !important;
+    max-height:0 !important;
+    overflow:hidden;
+    margin-top:0 !important;
+    transition:
+      opacity .45s ease,
+      max-height .45s ease,
+      margin-top .45s ease;
+  }
+
+  .why-card:active p,
+  .why-card:focus-within p{
+    opacity:1 !important;
+    max-height:160px !important;
+    margin-top:14px !important;
+  }
+
+  .why-card:active,
+  .why-card:focus-within{
+    border-color:#21d4d4;
+    background:linear-gradient(
+      180deg,
+      rgba(17,197,198,0.11),
+      rgba(255,255,255,0.04)
+    );
+  }
+
+  .why-card:active .card-icon,
+  .why-card:focus-within .card-icon{
+    animation:none;
+    transform:none !important;
   }
 }
 
