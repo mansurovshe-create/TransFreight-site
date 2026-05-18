@@ -2760,3 +2760,84 @@ body{
 .footer{
   max-width:100%;
 }
+
+
+/* ===== ABSOLUTE FINAL FIX: mobile tap reveal works ===== */
+
+@media(max-width:768px){
+  .cargo-map-section{
+    display:none !important;
+  }
+
+  .why-card,
+  .step{
+    cursor:pointer !important;
+    -webkit-tap-highlight-color:transparent !important;
+    touch-action:manipulation !important;
+    overflow:hidden !important;
+    transform:none !important;
+  }
+
+  .why-card p,
+  .step p{
+    display:block !important;
+    position:absolute !important;
+    left:24px !important;
+    right:24px !important;
+    bottom:24px !important;
+    margin:0 !important;
+    max-height:none !important;
+    overflow:visible !important;
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+    transform:translateY(14px) !important;
+    transition:
+      opacity .72s ease,
+      transform .72s cubic-bezier(0.22,1,0.36,1),
+      visibility .72s ease !important;
+  }
+
+  .why-card.is-open p,
+  .step.is-open p,
+  .why-card:active p,
+  .step:active p,
+  .why-card:focus-within p,
+  .step:focus-within p{
+    opacity:1 !important;
+    visibility:visible !important;
+    transform:translateY(0) !important;
+  }
+
+  .why-card.is-open,
+  .step.is-open,
+  .why-card:active,
+  .step:active,
+  .why-card:focus-within,
+  .step:focus-within{
+    border-color:rgba(33,212,212,0.72) !important;
+    background:linear-gradient(180deg, rgba(17,197,198,0.13), rgba(255,255,255,0.045)) !important;
+    box-shadow:0 12px 26px rgba(0,0,0,0.24), 0 0 18px rgba(33,212,212,0.10) !important;
+    transform:none !important;
+  }
+
+  .why-card.is-open h3,
+  .step.is-open h3,
+  .why-card:active h3,
+  .step:active h3,
+  .why-card:focus-within h3,
+  .step:focus-within h3{
+    color:#21d4d4 !important;
+  }
+
+  .why-card.is-open .card-icon,
+  .step.is-open span,
+  .why-card:active .card-icon,
+  .step:active span,
+  .why-card:focus-within .card-icon,
+  .step:focus-within span{
+    background:rgba(33,212,212,0.16) !important;
+    box-shadow:0 0 18px rgba(33,212,212,0.18) !important;
+    transform:none !important;
+  }
+}
