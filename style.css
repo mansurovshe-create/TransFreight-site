@@ -1414,6 +1414,119 @@ html::before{
       0 0 28px rgba(33,212,212,0.16) !important;
   }
 }
+
+/* ===== FINAL POLISH: мягкое появление, кнопки, типографика ===== */
+
+.advantages,
+.steps,
+.contact{
+  scroll-margin-top:24px;
+}
+
+.advantages h2,
+.steps h2,
+.contact h2{
+  letter-spacing:-0.02em;
+}
+
+.why-card,
+.step,
+form,
+.form-switcher,
+.footer-inner > *{
+  animation:softBlockReveal .9s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+.cards .why-card:nth-child(1),
+.steps-container .step:nth-child(1){ animation-delay:.04s; }
+.cards .why-card:nth-child(2),
+.steps-container .step:nth-child(2){ animation-delay:.10s; }
+.cards .why-card:nth-child(3),
+.steps-container .step:nth-child(3){ animation-delay:.16s; }
+.cards .why-card:nth-child(4),
+.steps-container .step:nth-child(4){ animation-delay:.22s; }
+.cards .why-card:nth-child(5){ animation-delay:.28s; }
+
+@keyframes softBlockReveal{
+  from{
+    opacity:0;
+    transform:translateY(22px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.btn,
+button,
+.switch-btn{
+  transform:translateZ(0);
+  transition:
+    transform .55s cubic-bezier(0.22,1,0.36,1),
+    box-shadow .55s ease,
+    background .55s ease,
+    color .55s ease,
+    border-color .55s ease !important;
+}
+
+.btn:hover,
+button:hover,
+.switch-btn:hover{
+  transform:translateY(-2px) !important;
+}
+
+.btn:active,
+button:active,
+.switch-btn:active{
+  transform:translateY(0) scale(.985) !important;
+}
+
+input,
+textarea{
+  transition:
+    border-color .45s ease,
+    box-shadow .45s ease,
+    background .45s ease !important;
+}
+
+input:focus,
+textarea:focus{
+  transform:none !important;
+  background:#0f1c28;
+}
+
+/* Scroll reveal, где браузер поддерживает CSS view timeline */
+@supports (animation-timeline:view()){
+  .advantages h2,
+  .steps h2,
+  .contact h2,
+  .why-card,
+  .step,
+  form,
+  .footer-inner > *{
+    animation-name:softScrollReveal;
+    animation-duration:1s;
+    animation-fill-mode:both;
+    animation-timing-function:cubic-bezier(0.22,1,0.36,1);
+    animation-timeline:view();
+    animation-range:entry 0% cover 24%;
+  }
+}
+
+@keyframes softScrollReveal{
+  from{
+    opacity:0;
+    transform:translateY(26px);
+    filter:blur(5px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+    filter:blur(0);
+  }
+}
+
 /* ===== MOBILE PERFORMANCE FIX ===== */
 
 @media(max-width:768px){
@@ -1431,15 +1544,15 @@ html::before{
     will-change:auto !important;
     box-shadow:0 10px 26px rgba(0,0,0,0.22) !important;
     transition:
-      background .35s ease,
-      border-color .35s ease,
-      box-shadow .35s ease !important;
+      background .38s ease,
+      border-color .38s ease,
+      box-shadow .38s ease !important;
   }
 
   .why-card::before,
   .step::before{
     opacity:.22 !important;
-    transition:opacity .35s ease !important;
+    transition:opacity .38s ease !important;
   }
 
   .card-icon,
@@ -1448,15 +1561,16 @@ html::before{
     will-change:auto !important;
     box-shadow:0 0 16px rgba(33,212,212,0.18) !important;
     transition:
-      background .35s ease,
-      box-shadow .35s ease !important;
+      background .38s ease,
+      box-shadow .38s ease,
+      color .38s ease !important;
   }
 
   .why-card p,
   .step p{
     transition:
-      opacity .35s ease,
-      transform .35s ease !important;
+      opacity .45s ease,
+      transform .45s cubic-bezier(0.22,1,0.36,1) !important;
   }
 
   .why-card:active,
@@ -1464,5 +1578,37 @@ html::before{
   .step:active,
   .step:focus-within{
     box-shadow:0 12px 28px rgba(0,0,0,0.24) !important;
+  }
+
+  .btn:hover,
+  button:hover,
+  .switch-btn:hover,
+  .btn:active,
+  button:active,
+  .switch-btn:active{
+    transform:none !important;
+  }
+
+  @supports (animation-timeline:view()){
+    .advantages h2,
+    .steps h2,
+    .contact h2,
+    .why-card,
+    .step,
+    form,
+    .footer-inner > *{
+      animation-range:entry 0% cover 14%;
+      filter:none !important;
+    }
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
   }
 }
