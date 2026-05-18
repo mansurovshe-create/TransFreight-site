@@ -1804,7 +1804,7 @@ textarea:focus{
     box-shadow:0 12px 26px rgba(0,0,0,0.24) !important;
   }
 }
-/* ===== ANIMATED CARGO MAP ===== */
+/* ===== ANIMATED CARGO MAP: реальные направления ===== */
 
 .cargo-map-section{
   position:relative;
@@ -1820,8 +1820,8 @@ textarea:focus{
   border-radius:34px;
   overflow:hidden;
   background:
-    radial-gradient(circle at 20% 20%, rgba(33,212,212,0.16), transparent 34%),
-    radial-gradient(circle at 80% 70%, rgba(255,140,0,0.12), transparent 36%),
+    radial-gradient(circle at 22% 34%, rgba(33,212,212,0.16), transparent 34%),
+    radial-gradient(circle at 82% 68%, rgba(255,140,0,0.12), transparent 36%),
     linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.03));
   border:1px solid rgba(255,255,255,0.14);
   box-shadow:
@@ -1829,12 +1829,24 @@ textarea:focus{
     inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
+.cargo-map::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.16;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size:54px 54px;
+}
+
 .map-glow{
   position:absolute;
   inset:-20%;
   background:
     linear-gradient(120deg, transparent, rgba(33,212,212,0.10), transparent);
-  animation:mapLight 8s ease-in-out infinite;
+  animation:mapLight 9s ease-in-out infinite;
 }
 
 .route-map{
@@ -1842,19 +1854,21 @@ textarea:focus{
   inset:0;
   width:100%;
   height:100%;
+  z-index:1;
 }
 
 .route{
   fill:none;
-  stroke-width:2;
+  stroke-width:2.3;
   stroke-linecap:round;
   stroke-dasharray:10 14;
-  opacity:.55;
+  opacity:.58;
 }
 
 .route-1{ stroke:#21d4d4; }
-.route-2{ stroke:#ffffff; opacity:.24; }
-.route-3{ stroke:#ffb35a; opacity:.34; }
+.route-2{ stroke:#ffffff; opacity:.30; }
+.route-3{ stroke:#ffb35a; opacity:.38; }
+.route-4{ stroke:#21d4d4; opacity:.34; }
 
 .city{
   fill:#07111c;
@@ -1863,28 +1877,40 @@ textarea:focus{
   filter:drop-shadow(0 0 10px rgba(33,212,212,0.65));
 }
 
+.city-spb{
+  stroke:#ffffff;
+  filter:drop-shadow(0 0 10px rgba(255,255,255,0.44));
+}
+
 .cargo-dot{
   fill:#21d4d4;
   filter:drop-shadow(0 0 12px rgba(33,212,212,0.9));
 }
 
 .dot-1{
-  offset-path:path("M80 360 C220 180, 360 420, 500 260 S760 160, 920 300");
+  offset-path:path("M210 245 C320 195, 435 190, 555 232");
   animation:cargoMove 8s linear infinite;
 }
 
 .dot-2{
-  offset-path:path("M120 150 C300 80, 410 210, 560 150 S780 250, 900 120");
+  offset-path:path("M210 245 C360 275, 520 275, 690 248");
   animation:cargoMove 10s linear infinite;
   animation-delay:-3s;
   fill:#ffffff;
 }
 
 .dot-3{
-  offset-path:path("M90 440 C260 350, 410 470, 590 380 S790 430, 930 330");
-  animation:cargoMove 11s linear infinite;
+  offset-path:path("M210 245 C340 340, 540 380, 815 350");
+  animation:cargoMove 12s linear infinite;
   animation-delay:-6s;
   fill:#ffb35a;
+}
+
+.dot-4{
+  offset-path:path("M210 245 C245 165, 305 125, 375 112");
+  animation:cargoMove 9s linear infinite;
+  animation-delay:-4s;
+  fill:#21d4d4;
 }
 
 .map-card{
@@ -1892,11 +1918,12 @@ textarea:focus{
   z-index:3;
   padding:14px 18px;
   border-radius:18px;
-  background:rgba(7,17,28,0.72);
+  background:rgba(7,17,28,0.76);
   border:1px solid rgba(255,255,255,0.14);
   box-shadow:0 14px 35px rgba(0,0,0,0.28);
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
+  pointer-events:none;
 }
 
 .map-card span{
@@ -1911,20 +1938,29 @@ textarea:focus{
   font-size:15px;
 }
 
-.map-card-1{
-  left:8%;
-  top:18%;
+.map-card-moscow{
+  left:12%;
+  top:37%;
 }
 
-.map-card-2{
-  right:8%;
-  top:22%;
+.map-card-spb{
+  left:28%;
+  top:12%;
 }
 
-.map-card-3{
-  left:50%;
-  bottom:12%;
-  transform:translateX(-50%);
+.map-card-kazan{
+  left:49%;
+  top:27%;
+}
+
+.map-card-ekb{
+  right:22%;
+  top:34%;
+}
+
+.map-card-nsk{
+  right:9%;
+  bottom:20%;
 }
 
 @keyframes cargoMove{
@@ -1947,11 +1983,11 @@ textarea:focus{
 @keyframes mapLight{
   0%,100%{
     transform:translateX(-20%);
-    opacity:.35;
+    opacity:.32;
   }
   50%{
     transform:translateX(20%);
-    opacity:.75;
+    opacity:.68;
   }
 }
 
@@ -1969,14 +2005,19 @@ textarea:focus{
     box-shadow:0 16px 38px rgba(0,0,0,0.28);
   }
 
+  .cargo-map::before{
+    opacity:.10;
+    background-size:46px 46px;
+  }
+
   .map-glow{
     animation:none;
-    opacity:.35;
+    opacity:.28;
   }
 
   .route{
     stroke-width:1.7;
-    opacity:.42;
+    opacity:.40;
   }
 
   .cargo-dot{
@@ -1988,7 +2029,8 @@ textarea:focus{
   }
 
   .dot-2,
-  .dot-3{
+  .dot-3,
+  .dot-4{
     display:none;
   }
 
@@ -1996,20 +2038,24 @@ textarea:focus{
     padding:12px 14px;
     backdrop-filter:none;
     -webkit-backdrop-filter:none;
+    box-shadow:0 10px 24px rgba(0,0,0,0.22);
   }
 
-  .map-card-1{
+  .map-card-moscow{
     left:16px;
     top:18px;
   }
 
-  .map-card-2{
+  .map-card-spb{
     right:16px;
+    left:auto;
     top:auto;
     bottom:18px;
   }
 
-  .map-card-3{
+  .map-card-kazan,
+  .map-card-ekb,
+  .map-card-nsk{
     display:none;
   }
 }
