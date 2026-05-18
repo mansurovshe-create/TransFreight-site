@@ -2405,3 +2405,32 @@ html::before{
     filter:none !important;
   }
 }
+
+/* ===== FINAL MOBILE FIXES: hide map + tap reveal ===== */
+@media(max-width:768px){
+  .cargo-map-section{
+    display:none !important;
+  }
+
+  .why-card.is-open p,
+  .step.is-open p{
+    opacity:1 !important;
+    transform:translateY(0) !important;
+  }
+
+  .why-card.is-open,
+  .step.is-open{
+    background:linear-gradient(180deg, rgba(17,197,198,0.14), rgba(255,255,255,0.05)) !important;
+    border-color:rgba(33,212,212,0.75) !important;
+  }
+
+  .why-card.is-open h3,
+  .step.is-open h3{
+    color:#21d4d4 !important;
+  }
+
+  .why-card.is-open .card-icon,
+  .step.is-open span{
+    background:rgba(33,212,212,0.16) !important;
+  }
+}
