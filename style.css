@@ -29,6 +29,37 @@ body::before{
   position:fixed;
   inset:0;
   z-index:-2;
+  pointer-events:none;*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(33,212,212,0.10), transparent 32%),
+    radial-gradient(circle at 88% 62%, rgba(255,140,0,0.08), transparent 34%),
+    linear-gradient(180deg, #07111c 0%, #08131f 45%, #091521 100%);
+  color:#ffffff;
+}
+
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
   pointer-events:none;
   background:
     radial-gradient(circle at 12% 18%, rgba(33,212,212,0.12), transparent 34%),
