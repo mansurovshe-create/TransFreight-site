@@ -1216,14 +1216,26 @@ html::before{
   padding-bottom:120px !important;
 }
 
-/* мобильная версия — описание всегда видно, без hover */
+/* мобильная версия — мягкая анимация без поломки десктопа */
 @media(max-width:768px){
 
   .why-card{
     min-height:auto !important;
     padding-bottom:28px !important;
     transform:none !important;
+    overflow:hidden !important;
+    animation:mobileCardSoftIn .75s cubic-bezier(0.22,1,0.36,1) both;
+    transition:
+      background .75s ease,
+      border-color .75s ease,
+      box-shadow .75s ease !important;
   }
+
+  .cards .why-card:nth-child(1){ animation-delay:.03s; }
+  .cards .why-card:nth-child(2){ animation-delay:.10s; }
+  .cards .why-card:nth-child(3){ animation-delay:.17s; }
+  .cards .why-card:nth-child(4){ animation-delay:.24s; }
+  .cards .why-card:nth-child(5){ animation-delay:.31s; }
 
   .why-card p{
     position:relative !important;
@@ -1233,14 +1245,60 @@ html::before{
     margin-top:14px !important;
     opacity:1 !important;
     transform:none !important;
+    transition:color .7s ease, opacity .7s ease !important;
+  }
+
+  .why-card .card-icon{
+    animation:mobileIconBreath 4.5s ease-in-out infinite !important;
+    transform:none !important;
+    transition:
+      background .75s ease,
+      box-shadow .75s ease,
+      transform .75s cubic-bezier(0.22,1,0.36,1) !important;
+  }
+
+  .why-card:active,
+  .why-card:focus-within{
+    background:linear-gradient(180deg, rgba(17,197,198,0.14), rgba(255,255,255,0.05)) !important;
+    border-color:rgba(33,212,212,0.75) !important;
+    box-shadow:
+      0 18px 42px rgba(0,0,0,0.30),
+      0 0 28px rgba(33,212,212,0.16) !important;
+  }
+
+  .why-card:active .card-icon,
+  .why-card:focus-within .card-icon{
+    animation:none !important;
+    transform:scale(1.035) !important;
+    background:rgba(33,212,212,0.18) !important;
+    box-shadow:0 0 32px rgba(33,212,212,0.30), inset 0 0 22px rgba(33,212,212,0.10) !important;
   }
 
   .why-card:hover{
     transform:none !important;
   }
 
-  .why-card:hover h3,
-  .why-card:hover .card-icon{
+  .why-card:hover h3{
     transform:none !important;
+  }
+}
+
+@keyframes mobileCardSoftIn{
+  from{
+    opacity:0;
+    transform:translateY(18px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes mobileIconBreath{
+  0%,100%{
+    box-shadow:0 0 24px rgba(33,212,212,0.18), inset 0 0 20px rgba(33,212,212,0.08);
+  }
+  50%{
+    box-shadow:0 0 36px rgba(33,212,212,0.32), inset 0 0 24px rgba(33,212,212,0.12);
   }
 }
