@@ -3202,38 +3202,30 @@ body{
 }
 
 /* ===== TEMP UPDATE: hero video enabled, interactive map disabled ===== */
-/* Финальный блок держим в самом низу: он перебивает старые стили выше. */
-
-.hero{
-  background:
-    radial-gradient(circle at 20% 24%, rgba(33,212,212,0.12), transparent 34%),
-    linear-gradient(180deg, #07111c 0%, #08131f 100%);
-}
+/* Исправлено: видео было затемнено финальным override внизу файла. */
 
 .bg-video{
   display:block !important;
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:0;
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  z-index:0 !important;
 
-  /* Видео видно, но не спорит с текстом */
-  opacity:.78;
-  filter:brightness(.9) contrast(1.04) saturate(1.06);
+  opacity:1 !important;
+  filter:brightness(1.08) contrast(1.06) saturate(1.12) !important;
 
-  /* Убираем CSS-анимацию scale: она усиливала рывок на повторе видео */
-  transform:none !important;
-  animation:none !important;
+  transform:scale(1.03);
+  animation:videoBreath 14s ease-in-out infinite;
 }
 
 .overlay{
   z-index:1;
   background:
-    linear-gradient(90deg, rgba(5,12,20,0.46), rgba(5,12,20,0.20)),
-    linear-gradient(180deg, rgba(5,12,20,0.10), rgba(5,12,20,0.44)),
-    rgba(0,0,0,0.10);
+    linear-gradient(90deg, rgba(5,12,20,0.34), rgba(5,12,20,0.12)),
+    linear-gradient(180deg, rgba(5,12,20,0.04), rgba(5,12,20,0.28)),
+    rgba(0,0,0,0.04) !important;
 }
 
 .hero-content{
@@ -3244,57 +3236,126 @@ body{
   display:none !important;
 }
 
-/* Мобильная версия: легче, спокойнее, без сильного кропа и скачков */
 @media(max-width:768px){
-  .hero{
-    min-height:100svh;
-    background:
-      radial-gradient(circle at 50% 18%, rgba(33,212,212,0.13), transparent 42%),
-      linear-gradient(180deg, #07111c 0%, #08131f 100%);
-  }
-
   .bg-video{
-    opacity:.46;
-    filter:brightness(.86) contrast(1.02) saturate(1.02);
-    object-fit:cover;
-    object-position:center center;
-    transform:none !important;
-    animation:none !important;
+    opacity:1 !important;
+    filter:brightness(1.04) contrast(1.04) saturate(1.08) !important;
+    transform:scale(1.08);
+    animation:none;
   }
 
   .overlay{
     background:
-      linear-gradient(180deg, rgba(5,12,20,0.38), rgba(5,12,20,0.50)),
-      rgba(0,0,0,0.10);
-  }
-
-  .hero-content{
-    padding:112px 20px 78px !important;
-  }
-
-  .hero h1::before{
-    opacity:.46 !important;
-    filter:blur(16px) !important;
-  }
-}
-
-/* На очень узких телефонах видео не должно превращать первый экран в хаос */
-@media(max-width:480px){
-  .bg-video{
-    opacity:.38;
-    filter:brightness(.82) contrast(1) saturate(1);
-  }
-
-  .overlay{
-    background:
-      linear-gradient(180deg, rgba(5,12,20,0.46), rgba(5,12,20,0.58)),
-      rgba(0,0,0,0.14);
+      linear-gradient(90deg, rgba(5,12,20,0.38), rgba(5,12,20,0.16)),
+      linear-gradient(180deg, rgba(5,12,20,0.06), rgba(5,12,20,0.32)),
+      rgba(0,0,0,0.06) !important;
   }
 }
 
 @media(prefers-reduced-motion:reduce){
   .bg-video{
     animation:none !important;
+  }
+}
+
+/* ===== MOBILE HERO VIDEO: показываем видео целиком, без обрезки ===== */
+/* Важно: горизонтальное видео на вертикальном экране не может одновременно быть целиком и заполнять весь экран.
+   Поэтому на телефоне видео показывается целиком сверху, а остальная часть hero закрывается мягким темным градиентом. */
+
+@media(max-width:768px){
+  .hero{
+    min-height:100svh !important;
+    align-items:flex-end !important;
+    background:
+      radial-gradient(circle at 50% 18%, rgba(33,212,212,0.12), transparent 42%),
+      linear-gradient(180deg, #06111c 0%, #07111c 48%, #050b12 100%) !important;
+  }
+
+  .bg-video{
+    display:block !important;
+    position:absolute !important;
+    top:0 !important;
+    left:0 !important;
+    width:100% !important;
+    height:46svh !important;
+    object-fit:contain !important;
+    object-position:center top !important;
+    opacity:.92 !important;
+    filter:brightness(1.12) contrast(1.05) saturate(1.10) !important;
     transform:none !important;
+    animation:none !important;
+    background:#06111c !important;
+  }
+
+  .overlay{
+    z-index:1 !important;
+    background:
+      linear-gradient(180deg,
+        rgba(5,12,20,0.08) 0%,
+        rgba(5,12,20,0.10) 28%,
+        rgba(5,12,20,0.74) 47%,
+        rgba(5,12,20,0.92) 72%,
+        rgba(5,12,20,0.96) 100%) !important;
+  }
+
+  .hero::after{
+    height:130px !important;
+    background:linear-gradient(180deg, transparent 0%, rgba(7,17,28,0.78) 58%, rgba(7,17,28,0.98) 100%) !important;
+  }
+
+  .hero-content{
+    justify-content:flex-end !important;
+    padding:44svh 20px 92px !important;
+    max-width:100% !important;
+  }
+
+  .hero h1{
+    font-size:clamp(33px, 9.7vw, 46px) !important;
+    line-height:1.05 !important;
+    letter-spacing:-0.045em !important;
+    margin-bottom:18px !important;
+    text-shadow:
+      0 12px 32px rgba(0,0,0,0.72),
+      0 0 30px rgba(33,212,212,0.16) !important;
+  }
+
+  .hero h1::before{
+    width:100vw !important;
+    height:170px !important;
+    opacity:.45 !important;
+  }
+
+  .hero h1::after{
+    width:170px !important;
+    margin-top:18px !important;
+  }
+
+  .hero p{
+    max-width:92% !important;
+    font-size:15.5px !important;
+    line-height:1.52 !important;
+  }
+
+  .hero .buttons{
+    margin-top:28px !important;
+  }
+
+  .hero .btn.primary{
+    min-height:58px !important;
+  }
+}
+
+@media(max-width:390px){
+  .bg-video{
+    height:42svh !important;
+  }
+
+  .hero-content{
+    padding-top:40svh !important;
+    padding-bottom:82px !important;
+  }
+
+  .hero h1{
+    font-size:clamp(31px, 9.3vw, 40px) !important;
   }
 }
