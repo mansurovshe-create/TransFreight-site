@@ -3770,3 +3770,68 @@ body{
     line-height:1.52 !important;
   }
 }
+/* ===== MOBILE HERO LAYOUT REWORK ===== */
+
+@media(max-width:768px){
+
+  .hero{
+    min-height:auto !important;
+    display:block !important;
+    padding-top:34px;
+    background:#07111c !important;
+  }
+
+  .hero-content{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    padding:0 20px 70px !important;
+  }
+
+  .hero h1{
+    order:1;
+    position:relative;
+    z-index:3;
+    margin:0 0 26px !important;
+    font-size:48px !important;
+    line-height:.96 !important;
+    text-align:center;
+  }
+
+  .bg-video{
+    order:2;
+    position:relative !important;
+    width:100% !important;
+    height:260px !important;
+    border-radius:26px;
+    overflow:hidden;
+    object-fit:cover !important;
+    object-position:center !important;
+    margin-bottom:26px;
+    transform:none !important;
+  }
+
+  .overlay{
+    display:none !important;
+  }
+
+  .buttons{
+    order:3;
+    width:100%;
+    margin-top:0 !important;
+    margin-bottom:24px;
+  }
+
+  .hero p{
+    order:4;
+    max-width:100% !important;
+    text-align:center;
+    font-size:17px !important;
+    line-height:1.5 !important;
+    margin-top:0 !important;
+  }
+
+  .hero::after{
+    display:none !important;
+  }
+}
