@@ -3202,16 +3202,20 @@ body{
 }
 
 /* ===== TEMP UPDATE: hero video enabled, interactive map disabled ===== */
+/* Исправлено: видео было затемнено финальным override внизу файла. */
 
 .bg-video{
   display:block !important;
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:0;
-  opacity:.42;
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  z-index:0 !important;
+
+  opacity:1 !important;
+  filter:brightness(1.08) contrast(1.06) saturate(1.12) !important;
+
   transform:scale(1.03);
   animation:videoBreath 14s ease-in-out infinite;
 }
@@ -3219,9 +3223,9 @@ body{
 .overlay{
   z-index:1;
   background:
-    linear-gradient(90deg, rgba(5,12,20,0.82), rgba(5,12,20,0.54)),
-    linear-gradient(180deg, rgba(5,12,20,0.20), rgba(5,12,20,0.62)),
-    rgba(0,0,0,0.30);
+    linear-gradient(90deg, rgba(5,12,20,0.34), rgba(5,12,20,0.12)),
+    linear-gradient(180deg, rgba(5,12,20,0.04), rgba(5,12,20,0.28)),
+    rgba(0,0,0,0.04) !important;
 }
 
 .hero-content{
@@ -3234,9 +3238,17 @@ body{
 
 @media(max-width:768px){
   .bg-video{
-    opacity:.32;
+    opacity:1 !important;
+    filter:brightness(1.04) contrast(1.04) saturate(1.08) !important;
     transform:scale(1.08);
     animation:none;
+  }
+
+  .overlay{
+    background:
+      linear-gradient(90deg, rgba(5,12,20,0.38), rgba(5,12,20,0.16)),
+      linear-gradient(180deg, rgba(5,12,20,0.06), rgba(5,12,20,0.32)),
+      rgba(0,0,0,0.06) !important;
   }
 }
 
