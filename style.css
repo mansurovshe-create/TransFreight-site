@@ -3258,104 +3258,87 @@ body{
   }
 }
 
-/* ===== MOBILE HERO VIDEO: показываем видео целиком, без обрезки ===== */
-/* Важно: горизонтальное видео на вертикальном экране не может одновременно быть целиком и заполнять весь экран.
-   Поэтому на телефоне видео показывается целиком сверху, а остальная часть hero закрывается мягким темным градиентом. */
+/* ===== MOBILE HERO FINAL: video stays behind text, brighter, cleaner crop ===== */
+/* Горизонтальное видео остается фоном hero, но на телефоне делаем его заметнее
+   и убираем тяжелое затемнение. Блоки ниже сайта не затрагиваются. */
 
 @media(max-width:768px){
   .hero{
     min-height:100svh !important;
-    align-items:flex-end !important;
-    background:
-      radial-gradient(circle at 50% 18%, rgba(33,212,212,0.12), transparent 42%),
-      linear-gradient(180deg, #06111c 0%, #07111c 48%, #050b12 100%) !important;
+    align-items:center !important;
+    background:#06111c !important;
   }
 
   .bg-video{
     display:block !important;
     position:absolute !important;
-    top:0 !important;
-    left:0 !important;
+    inset:0 !important;
     width:100% !important;
-    height:46svh !important;
-    object-fit:contain !important;
-    object-position:center top !important;
-    opacity:.92 !important;
-    filter:brightness(1.12) contrast(1.05) saturate(1.10) !important;
-    transform:none !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:42% center !important;
+    z-index:0 !important;
+    opacity:1 !important;
+    filter:brightness(1.34) contrast(1.08) saturate(1.18) !important;
+    transform:scale(1.015) !important;
     animation:none !important;
-    background:#06111c !important;
   }
 
   .overlay{
     z-index:1 !important;
     background:
+      radial-gradient(circle at 50% 48%, rgba(5,12,20,0.08) 0%, rgba(5,12,20,0.26) 54%, rgba(5,12,20,0.55) 100%),
       linear-gradient(180deg,
-        rgba(5,12,20,0.08) 0%,
-        rgba(5,12,20,0.10) 28%,
-        rgba(5,12,20,0.74) 47%,
-        rgba(5,12,20,0.92) 72%,
-        rgba(5,12,20,0.96) 100%) !important;
+        rgba(5,12,20,0.10) 0%,
+        rgba(5,12,20,0.12) 22%,
+        rgba(5,12,20,0.20) 48%,
+        rgba(5,12,20,0.48) 100%) !important;
   }
 
   .hero::after{
-    height:130px !important;
-    background:linear-gradient(180deg, transparent 0%, rgba(7,17,28,0.78) 58%, rgba(7,17,28,0.98) 100%) !important;
+    height:115px !important;
+    background:linear-gradient(180deg, transparent 0%, rgba(7,17,28,0.54) 56%, rgba(7,17,28,0.96) 100%) !important;
   }
 
   .hero-content{
-    justify-content:flex-end !important;
-    padding:44svh 20px 92px !important;
+    position:relative !important;
+    z-index:2 !important;
+    padding:108px 20px 92px !important;
     max-width:100% !important;
   }
 
   .hero h1{
-    font-size:clamp(33px, 9.7vw, 46px) !important;
-    line-height:1.05 !important;
-    letter-spacing:-0.045em !important;
-    margin-bottom:18px !important;
+    font-size:clamp(36px, 10.4vw, 50px) !important;
+    line-height:1.03 !important;
+    letter-spacing:-0.047em !important;
     text-shadow:
-      0 12px 32px rgba(0,0,0,0.72),
-      0 0 30px rgba(33,212,212,0.16) !important;
+      0 10px 26px rgba(0,0,0,0.86),
+      0 0 34px rgba(0,0,0,0.52),
+      0 0 28px rgba(33,212,212,0.16) !important;
   }
 
   .hero h1::before{
-    width:100vw !important;
-    height:170px !important;
-    opacity:.45 !important;
-  }
-
-  .hero h1::after{
-    width:170px !important;
-    margin-top:18px !important;
+    opacity:.38 !important;
+    filter:blur(18px) !important;
   }
 
   .hero p{
-    max-width:92% !important;
-    font-size:15.5px !important;
-    line-height:1.52 !important;
+    color:rgba(241,248,252,0.92) !important;
+    text-shadow:0 8px 22px rgba(0,0,0,0.82) !important;
   }
 
   .hero .buttons{
-    margin-top:28px !important;
-  }
-
-  .hero .btn.primary{
-    min-height:58px !important;
+    margin-top:34px !important;
   }
 }
 
 @media(max-width:390px){
-  .bg-video{
-    height:42svh !important;
+  .hero h1{
+    font-size:clamp(32px, 10vw, 42px) !important;
   }
 
   .hero-content{
-    padding-top:40svh !important;
+    padding-top:96px !important;
     padding-bottom:82px !important;
-  }
-
-  .hero h1{
-    font-size:clamp(31px, 9.3vw, 40px) !important;
   }
 }
