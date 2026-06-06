@@ -1216,3 +1216,9 @@ button:disabled{
     scroll-behavior:auto !important;
   }
 }
+@media(max-width:768px){
+    .mobile-video-card,
+    .mobile-video{
+        display:none !important;
+    }
+}
