@@ -1,16 +1,25 @@
 (function(){
+  "use strict";
+
+  const WORKER_URL = "https://noisy-breeze-f037.mansurov-she.workers.dev";
+
+  function qs(selector, root = document){
+    return root.querySelector(selector);
+  }
+
+  function qsa(selector, root = document){
+    return Array.from(root.querySelectorAll(selector));
+  }
+
   function showMessage(element, text){
     if(!element) return;
     if(text) element.textContent = text;
+
     element.classList.add("show");
 
-    setTimeout(() => {
+    window.setTimeout(function(){
       element.classList.remove("show");
     }, 4000);
-  }
-
-  function showOwnerError(text){
-    showMessage(document.getElementById("errorMessage"), text);
   }
 
   function formatPhone(digits){
@@ -39,7 +48,9 @@
     let count = 0;
 
     for(let i = 0; i < cursor; i++){
-      if(/\d/.test(value[i])) count++;
+      if(/\d/.test(value[i])){
+        count++;
+      }
     }
 
     return count;
@@ -49,7 +60,9 @@
     let count = 0;
 
     for(let i = 0; i < value.length; i++){
-      if(/\d/.test(value[i])) count++;
+      if(/\d/.test(value[i])){
+        count++;
+      }
 
       if(count >= digitPosition){
         return i + 1;
@@ -115,185 +128,197 @@
     });
   }
 
-  function setupForms(){
-    const telegramForm = document.getElementById("telegramForm");
-    const driverForm = document.getElementById("driverForm");
-
-    setupPhoneMask(document.getElementById("phone"));
-    setupPhoneMask(document.getElementById("driverPhone"));
-
-    if(telegramForm){
-      telegramForm.addEventListener("submit", async function(e){
-        e.preventDefault();
-
-        const name = document.getElementById("name").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const route = document.getElementById("route").value.trim();
-        const cargo = document.getElementById("cargo").value.trim();
-        const website = document.getElementById("website").value;
-        const cleanPhone = phone.replace(/\D/g,'');
-
-        if(name.length < 2){
-          showOwnerError("Введите имя");
-          return;
-        }
-
-        if(cleanPhone.length < 11){
-          showOwnerError("Введите корректный телефон");
-          return;
-        }
-
-        if(route.length < 3){
-          showOwnerError("Введите маршрут");
-          return;
-        }
-
-        if(cargo.length < 3){
-          showOwnerError("Введите описание груза");
-          return;
-        }
-
-        if(!telegramForm.checkValidity()){
-          telegramForm.reportValidity();
-          return;
-        }
-
-        const tokenField = telegramForm.querySelector("[name='cf-turnstile-response']");
-
-        if(!tokenField || !tokenField.value){
-          showOwnerError("Подтвердите проверку Cloudflare");
-          return;
-        }
-
-        const button = telegramForm.querySelector("button[type='submit']");
-        button.disabled = true;
-        button.textContent = "Отправка...";
-
-        try{
-          const response = await fetch("https://noisy-breeze-f037.mansurov-she.workers.dev", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              name,
-              phone,
-              route,
-              cargo,
-              website,
-              token: tokenField.value
-            })
-          });
-
-          if(!response.ok){
-            throw new Error("Ошибка отправки");
-          }
-
-          showMessage(document.getElementById("successMessage"), "✅ Заявка успешно отправлена");
-
-          if(typeof ym === "function"){
-            ym(109260432, "reachGoal", "lead");
-          }
-
-          telegramForm.reset();
-
-          if(typeof turnstile !== "undefined"){
-            turnstile.reset();
-          }
-
-        }catch(error){
-          console.error(error);
-          showOwnerError("Ошибка отправки. Попробуйте позже");
-        }finally{
-          button.disabled = false;
-          button.textContent = "Отправить заявку";
-        }
-      });
-    }
-
-    if(driverForm){
-      driverForm.addEventListener("submit", async function(e){
-        e.preventDefault();
-
-        const name = document.getElementById("driverName").value.trim();
-        const city = document.getElementById("driverCity").value.trim();
-        const phone = document.getElementById("driverPhone").value.trim();
-        const car = document.getElementById("driverCar").value.trim();
-        const website = document.getElementById("driverWebsite").value;
-
-        const driverSuccess = document.getElementById("driverSuccess");
-        const driverError = document.getElementById("driverError");
-
-        driverSuccess.classList.remove("show");
-        driverError.classList.remove("show");
-
-        const cleanPhone = phone.replace(/\D/g,'');
-
-        if(name.length < 2 || city.length < 2 || cleanPhone.length < 11 || car.length < 2){
-          showMessage(driverError, "Заполните все поля корректно");
-          return;
-        }
-
-        if(!driverForm.checkValidity()){
-          driverForm.reportValidity();
-          return;
-        }
-
-        const tokenField = driverForm.querySelector("[name='cf-turnstile-response']");
-
-        if(!tokenField || !tokenField.value){
-          showMessage(driverError, "Подтвердите проверку Cloudflare");
-          return;
-        }
-
-        const button = driverForm.querySelector("button[type='submit']");
-        button.disabled = true;
-        button.textContent = "Отправка...";
-
-        try{
-          const response = await fetch("https://noisy-breeze-f037.mansurov-she.workers.dev", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              type: "driver",
-              name: "🚚 ВОДИТЕЛЬ: " + name,
-              phone: phone,
-              route: "Заявка от водителя",
-              cargo: "Город водителя: " + city + "\nМашина: " + car,
-              website,
-              token: tokenField.value
-            })
-          });
-
-          if(!response.ok){
-            throw new Error("Ошибка отправки");
-          }
-
-          showMessage(driverSuccess, "✅ Заявка отправлена");
-          driverForm.reset();
-
-          if(typeof turnstile !== "undefined"){
-            turnstile.reset();
-          }
-
-        }catch(error){
-          console.error(error);
-          showMessage(driverError, "Ошибка отправки. Попробуйте позже");
-        }finally{
-          button.disabled = false;
-          button.textContent = "Отправить заявку";
-        }
-      });
+  function resetTurnstile(){
+    if(typeof turnstile !== "undefined"){
+      try{
+        turnstile.reset();
+      }catch(e){
+        console.warn("Turnstile reset skipped", e);
+      }
     }
   }
 
+  function setupCargoOwnerForm(){
+    const form = qs("#telegramForm");
+    if(!form) return;
+
+    const errorMessage = qs("#errorMessage");
+    const successMessage = qs("#successMessage");
+
+    form.addEventListener("submit", async function(e){
+      e.preventDefault();
+
+      const name = qs("#name")?.value.trim() || "";
+      const phone = qs("#phone")?.value.trim() || "";
+      const route = qs("#route")?.value.trim() || "";
+      const cargo = qs("#cargo")?.value.trim() || "";
+      const website = qs("#website")?.value || "";
+      const policy = qs("#ownerPolicyAgree");
+      const cleanPhone = phone.replace(/\D/g, "");
+
+      if(name.length < 2){
+        showMessage(errorMessage, "Введите имя");
+        return;
+      }
+
+      if(cleanPhone.length < 11){
+        showMessage(errorMessage, "Введите корректный телефон");
+        return;
+      }
+
+      if(route.length < 3){
+        showMessage(errorMessage, "Введите маршрут");
+        return;
+      }
+
+      if(cargo.length < 3){
+        showMessage(errorMessage, "Введите описание груза");
+        return;
+      }
+
+      if(policy && !policy.checked){
+        showMessage(errorMessage, "Необходимо дать согласие на обработку персональных данных");
+        return;
+      }
+
+      const tokenField = qs("[name='cf-turnstile-response']", form);
+
+      if(!tokenField || !tokenField.value){
+        showMessage(errorMessage, "Подтвердите проверку Cloudflare");
+        return;
+      }
+
+      const button = qs("button[type='submit']", form);
+      if(button){
+        button.disabled = true;
+        button.textContent = "Отправка...";
+      }
+
+      try{
+        const response = await fetch(WORKER_URL, {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({
+            name,
+            phone,
+            route,
+            cargo,
+            website,
+            token:tokenField.value
+          })
+        });
+
+        if(!response.ok){
+          throw new Error("Ошибка отправки");
+        }
+
+        showMessage(successMessage, "✅ Заявка успешно отправлена");
+
+        if(typeof ym === "function"){
+          ym(109260432, "reachGoal", "lead");
+        }
+
+        form.reset();
+        resetTurnstile();
+
+      }catch(error){
+        console.error(error);
+        showMessage(errorMessage, "Ошибка отправки. Попробуйте позже");
+      }finally{
+        if(button){
+          button.disabled = false;
+          button.textContent = "Отправить заявку";
+        }
+      }
+    });
+  }
+
+  function setupDriverForm(){
+    const form = qs("#driverForm");
+    if(!form) return;
+
+    const successMessage = qs("#driverSuccess");
+    const errorMessage = qs("#driverError");
+
+    form.addEventListener("submit", async function(e){
+      e.preventDefault();
+
+      const name = qs("#driverName")?.value.trim() || "";
+      const city = qs("#driverCity")?.value.trim() || "";
+      const phone = qs("#driverPhone")?.value.trim() || "";
+      const car = qs("#driverCar")?.value.trim() || "";
+      const website = qs("#driverWebsite")?.value || "";
+      const policy = qs("#carrierPolicyAgree");
+      const cleanPhone = phone.replace(/\D/g, "");
+
+      if(name.length < 2 || city.length < 2 || cleanPhone.length < 11 || car.length < 2){
+        showMessage(errorMessage, "Заполните все поля корректно");
+        return;
+      }
+
+      if(policy && !policy.checked){
+        showMessage(errorMessage, "Необходимо дать согласие на обработку персональных данных");
+        return;
+      }
+
+      const tokenField = qs("[name='cf-turnstile-response']", form);
+
+      if(!tokenField || !tokenField.value){
+        showMessage(errorMessage, "Подтвердите проверку Cloudflare");
+        return;
+      }
+
+      const button = qs("button[type='submit']", form);
+      if(button){
+        button.disabled = true;
+        button.textContent = "Отправка...";
+      }
+
+      try{
+        const response = await fetch(WORKER_URL, {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({
+            type:"driver",
+            name:"🚚 ВОДИТЕЛЬ: " + name,
+            phone,
+            route:"Заявка от водителя",
+            cargo:"Город водителя: " + city + "\nМашина: " + car,
+            website,
+            token:tokenField.value
+          })
+        });
+
+        if(!response.ok){
+          throw new Error("Ошибка отправки");
+        }
+
+        showMessage(successMessage, "✅ Заявка отправлена");
+
+        form.reset();
+        resetTurnstile();
+
+      }catch(error){
+        console.error(error);
+        showMessage(errorMessage, "Ошибка отправки. Попробуйте позже");
+      }finally{
+        if(button){
+          button.disabled = false;
+          button.textContent = "Отправить заявку";
+        }
+      }
+    });
+  }
+
   function setupFormSwitcher(){
-    const cargoOwnerBtn = document.getElementById("cargoOwnerBtn");
-    const carrierBtn = document.getElementById("carrierBtn");
-    const cargoOwnerForm = document.getElementById("cargoOwnerForm");
-    const carrierForm = document.getElementById("carrierForm");
+    const cargoOwnerBtn = qs("#cargoOwnerBtn");
+    const carrierBtn = qs("#carrierBtn");
+    const cargoOwnerForm = qs("#cargoOwnerForm");
+    const carrierForm = qs("#carrierForm");
 
     if(!cargoOwnerBtn || !carrierBtn || !cargoOwnerForm || !carrierForm) return;
 
@@ -304,9 +329,7 @@
       cargoOwnerForm.style.display = "block";
       carrierForm.style.display = "none";
 
-      if(typeof turnstile !== "undefined"){
-        turnstile.reset();
-      }
+      resetTurnstile();
     });
 
     carrierBtn.addEventListener("click", function(){
@@ -316,50 +339,50 @@
       cargoOwnerForm.style.display = "none";
       carrierForm.style.display = "block";
 
-      if(typeof turnstile !== "undefined"){
-        turnstile.reset();
-      }
+      resetTurnstile();
     });
   }
 
   function setupCookieBanner(){
-    const cookieBanner = document.getElementById("cookieBanner");
-    const cookieAcceptBtn = document.getElementById("cookieAcceptBtn");
+    const banner = qs("#cookieBanner");
+    const button = qs("#cookieAcceptBtn");
 
-    if(!cookieBanner || !cookieAcceptBtn) return;
+    if(!banner || !button) return;
 
-    if(localStorage.getItem("transfreight_cookie_accepted") === "yes"){
-      cookieBanner.classList.add("is-hidden");
+    if(localStorage.getItem("transfreight_cookie_accepted_v2") === "yes"){
+      banner.classList.add("is-hidden");
       return;
     }
 
-    cookieAcceptBtn.addEventListener("click", function(){
-      localStorage.setItem("transfreight_cookie_accepted", "yes");
-      cookieBanner.classList.add("is-hidden");
+    banner.classList.remove("is-hidden");
+
+    button.addEventListener("click", function(){
+      localStorage.setItem("transfreight_cookie_accepted_v2", "yes");
+      banner.classList.add("is-hidden");
     });
   }
 
   function setupCardReveal(){
-    const cards = document.querySelectorAll(".why-card, .step");
+    const cards = qsa(".why-card, .step");
     if(!cards.length) return;
 
     const mobileQuery = window.matchMedia("(max-width: 768px)");
     let observer = null;
 
-    cards.forEach((card) => {
+    cards.forEach(function(card){
       card.setAttribute("role", "button");
       card.setAttribute("aria-expanded", "false");
     });
 
-    function closeCards(){
-      cards.forEach((card) => {
+    function closeAll(){
+      cards.forEach(function(card){
         card.classList.remove("is-open");
         card.setAttribute("aria-expanded", "false");
       });
     }
 
     function openCard(card){
-      cards.forEach((item) => {
+      cards.forEach(function(item){
         const sameGroup = item.closest(".cards, .steps-container") === card.closest(".cards, .steps-container");
 
         if(sameGroup && item !== card){
@@ -372,29 +395,31 @@
       card.setAttribute("aria-expanded", "true");
     }
 
-    function setupMobileScrollReveal(){
-      closeCards();
+    function setupMobile(){
+      closeAll();
 
       if(observer){
         observer.disconnect();
       }
 
-      observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
+      observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
           if(entry.isIntersecting && mobileQuery.matches){
             openCard(entry.target);
           }
         });
       }, {
-        threshold: 0.72,
-        rootMargin: "-18% 0px -18% 0px"
+        threshold:0.68,
+        rootMargin:"-18% 0px -18% 0px"
       });
 
-      cards.forEach((card) => observer.observe(card));
+      cards.forEach(function(card){
+        observer.observe(card);
+      });
     }
 
-    function setupDesktopHoverReveal(){
-      closeCards();
+    function setupDesktop(){
+      closeAll();
 
       if(observer){
         observer.disconnect();
@@ -404,13 +429,13 @@
 
     function applyMode(){
       if(mobileQuery.matches){
-        setupMobileScrollReveal();
+        setupMobile();
       }else{
-        setupDesktopHoverReveal();
+        setupDesktop();
       }
     }
 
-    cards.forEach((card) => {
+    cards.forEach(function(card){
       card.addEventListener("keydown", function(e){
         if(e.key === "Enter" || e.key === " "){
           e.preventDefault();
@@ -431,10 +456,67 @@
     }
   }
 
+  function setupScrollReveal(){
+    const items = qsa(".why-card, .step, .contact form, .footer-inner > div");
+
+    if(!items.length) return;
+
+    items.forEach(function(item){
+      item.classList.add("reveal");
+    });
+
+    const observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold:0.12,
+      rootMargin:"0px 0px -8% 0px"
+    });
+
+    items.forEach(function(item){
+      observer.observe(item);
+    });
+  }
+
+  function setupMobileVideoControl(){
+    const video = qs(".bg-video");
+    if(!video) return;
+
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+
+    function apply(){
+      if(mobileQuery.matches){
+        video.pause();
+        video.removeAttribute("autoplay");
+      }else{
+        video.setAttribute("autoplay", "");
+        video.play().catch(function(){});
+      }
+    }
+
+    apply();
+
+    if(mobileQuery.addEventListener){
+      mobileQuery.addEventListener("change", apply);
+    }else{
+      mobileQuery.addListener(apply);
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", function(){
-    setupForms();
+    setupPhoneMask(qs("#phone"));
+    setupPhoneMask(qs("#driverPhone"));
+
+    setupCargoOwnerForm();
+    setupDriverForm();
     setupFormSwitcher();
     setupCookieBanner();
     setupCardReveal();
+    setupScrollReveal();
+    setupMobileVideoControl();
   });
 })();
