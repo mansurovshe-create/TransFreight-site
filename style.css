@@ -1217,8 +1217,7 @@ button:disabled{
   }
 }
 @media(max-width:768px){
-    .mobile-video-card,
-    .mobile-video{
-        display:none !important;
-    }
+  .bg-video{
+    display:none !important;
+  }
 }
