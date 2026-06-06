@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/png" href="favicon.png">
 
+<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
 (function(m,e,t,r,i,k,a){
   m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -46,16 +47,17 @@ ym(109260432, 'init', {
   trackLinks:true
 });
 </script>
-
 <noscript>
 <div><img src="https://mc.yandex.ru/watch/109260432" style="position:absolute; left:-9999px;" alt=""></div>
 </noscript>
+<!-- /Yandex.Metrika counter -->
 </head>
 
 <body>
 
 <header class="hero">
   <video autoplay muted loop playsinline preload="metadata" class="bg-video">
+    <source src="transfreight_mobile_background.mp4" type="video/mp4" media="(max-width: 768px)">
     <source src="transfreight_background.mp4" type="video/mp4">
   </video>
 
@@ -63,16 +65,7 @@ ym(109260432, 'init', {
 
   <div class="hero-content">
     <h1>Надежные грузоперевозки по России и СНГ</h1>
-
-    <div class="mobile-video-card" aria-hidden="true">
-      <video autoplay muted loop playsinline preload="metadata" class="mobile-video">
-        <source src="transfreight_mobile_background.mp4" type="video/mp4">
-        <source src="transfreight_background.mp4" type="video/mp4">
-      </video>
-    </div>
-
     <p>Экспедиторские услуги для бизнеса с полным сопровождением груза</p>
-
     <div class="buttons">
       <a class="btn primary" href="#contact">Оставить заявку</a>
     </div>
@@ -185,7 +178,7 @@ ym(109260432, 'init', {
       <div class="cf-turnstile" data-sitekey="0x4AAAAAADRK5G3awvAaMpHT"></div>
 
       <label class="policy-check">
-        <input type="checkbox" id="ownerPolicyAgree" name="policy_agree">
+        <input type="checkbox" id="ownerPolicyAgree" name="policy_agree" required>
         <span>
           Я ознакомлен(а) с
           <a href="/privacy.html" target="_blank" rel="noopener">Политикой конфиденциальности</a>
@@ -211,7 +204,7 @@ ym(109260432, 'init', {
       <div class="cf-turnstile" data-sitekey="0x4AAAAAADRK5G3awvAaMpHT"></div>
 
       <label class="policy-check">
-        <input type="checkbox" id="carrierPolicyAgree" name="policy_agree">
+        <input type="checkbox" id="carrierPolicyAgree" name="policy_agree" required>
         <span>
           Я ознакомлен(а) с
           <a href="/privacy.html" target="_blank" rel="noopener">Политикой конфиденциальности</a>
